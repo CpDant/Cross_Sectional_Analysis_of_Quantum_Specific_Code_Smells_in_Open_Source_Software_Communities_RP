@@ -1,0 +1,8 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,temp_circuit,79,25,,54,,LPQ
+,circuit,92,33,,239,,LPQ
+,circuit,88,29,,276,,LPQ
+,circuit,83,29,,410,,LPQ
+,circuit,80,21,,477,,LPQ
+,circuit,75,21,,584,,LPQ
+,combined_circuit,79,21,,925,,LPQ

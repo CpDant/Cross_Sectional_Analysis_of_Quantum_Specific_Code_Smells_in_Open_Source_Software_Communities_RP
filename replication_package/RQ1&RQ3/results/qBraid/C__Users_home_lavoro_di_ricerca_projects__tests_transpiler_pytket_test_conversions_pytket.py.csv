@@ -1,0 +1,11 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,cirq_circuit,46,24,,,,48,,CG
+,circuit_cirq,70,48,,,,48,,CG
+,cirq_circuit,46,24,,,,58,,CG
+,circuit_cirq,70,48,,,,58,,CG
+,cirq_circuit,55,22,,,,46,,LPQ
+,pytket_circuit,53,20,,,,47,,LPQ
+,cirq_circuit,55,22,,,,56,,LPQ
+,pytket_circuit,53,20,,,,57,,LPQ
+,pytket_circuit,57,24,,,,71,,LPQ
+,pytket_circuit,57,24,,,,91,,LPQ

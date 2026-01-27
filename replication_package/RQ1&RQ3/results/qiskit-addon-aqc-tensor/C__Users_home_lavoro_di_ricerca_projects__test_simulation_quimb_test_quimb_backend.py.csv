@@ -1,0 +1,9 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,qc,,,,,,,,,"[{'operation_name': 'rx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 235, 'column_start': 8, 'column_end': 23, 'source_line': 'qc.rx(1 - p, 0)', 'params': ['1 - p']}]",,,1,,[235],,ROC
+,,qc,,,,,,,,,"[{'operation_name': 'ry', 'qubits_affected': [0], 'clbits_affected': [], 'row': 260, 'column_start': 8, 'column_end': 23, 'source_line': 'qc.ry(x - y, 0)', 'params': ['x - y']}, {'operation_name': 'rx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 268, 'column_start': 8, 'column_end': 22, 'source_line': 'qc.rx(x**2, 0)', 'params': ['x**2']}, {'operation_name': 'rx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 279, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.rx(x, 0)', 'params': ['x']}]",,,1,,"[260, 268, 279]",,ROC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,12,0.42399360561033933,,,,2,,,,,,LC
+,,qc,,,,,,,8,cx,,,1,,44,,,IQ
+,,qc,,,,,,,,,"[{'operation_name': 'rx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 268, 'column_start': 8, 'column_end': 22, 'source_line': 'qc.rx(x**2, 0)', 'params': ['x**2']}]",,,1,,[268],,ROC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,13,0.3947352545709368,,,,2,,,,,,LC
+,,qc,,,,,,,8,cx,,,1,,52,,,IQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,11,0.4554206281723182,,,,2,,,,,,LC

@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,qubit,repetitions,row,rows,suggestion,type
+,circ,,,,"[{'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 297, 'column_start': 8, 'column_end': 26, 'source_line': 'circ.measure(0, 0)'}]",,1,,[297],,ROC
+,circ,,,,,0,,,,,IM

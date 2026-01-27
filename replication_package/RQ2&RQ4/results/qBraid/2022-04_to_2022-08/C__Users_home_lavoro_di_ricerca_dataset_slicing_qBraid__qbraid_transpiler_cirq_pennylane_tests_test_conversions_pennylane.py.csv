@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,cirq,45,24,,,,94,,CG
+,cirq,70,47,,,,94,,CG

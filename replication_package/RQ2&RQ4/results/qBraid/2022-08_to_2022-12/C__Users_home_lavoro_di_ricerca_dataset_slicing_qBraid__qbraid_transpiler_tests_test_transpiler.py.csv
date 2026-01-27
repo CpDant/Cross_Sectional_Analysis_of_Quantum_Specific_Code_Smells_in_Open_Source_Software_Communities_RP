@@ -1,0 +1,22 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,Not a package,43,9,,119,,LPQ
+,qiskit,36,9,,128,,LPQ
+,target_package,66,26,,186,,LPQ
+,target_package,66,26,,194,,LPQ
+,braket,70,32,,322,,LPQ
+,qiskit,70,32,,323,,LPQ
+,qiskit,68,32,,338,,LPQ
+,cirq,66,30,,339,,LPQ
+,braket,68,32,,354,,LPQ
+,cirq,66,30,,355,,LPQ
+,qiskit,60,22,,379,,LPQ
+,braket,64,26,,394,,LPQ
+,cirq,60,24,,409,,LPQ
+,cirq,56,20,,421,,LPQ
+,qiskit,58,22,,433,,LPQ
+,braket,58,22,,449,,LPQ
+,qiskit,55,22,,459,,LPQ
+,cirq,52,20,,474,,LPQ
+,qiskit,56,22,,475,,LPQ
+,qiskit,56,22,,493,,LPQ
+,braket,56,22,,494,,LPQ

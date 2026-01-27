@@ -1,0 +1,20 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,matrix,operation_distance,operation_name,operations,parallel_op,qubit,qubits,repetitions,row,rows,suggestion,type
+,,qc,,,,,,,,8,ccz,,,0,,,,,,IQ
+,,qc,,,,,,,,3,ccz,,,0,,,,,,IQ
+,,qc,,,,,,,,11,cx,,,3,,,,,,IQ
+,,qc,,,,,,,,7,ccx,,,3,,,,,,IQ
+,,qc,,,,,,,,12,cx,,,3,,,75,,,IQ
+,,qc,,,,,,,,3,ccz,,,2,,,,,,IQ
+,,qc,,,,,,,,6,cx,,,2,,,,,,IQ
+,,qc,,,,,,,,5,ccx,,,2,,,,,,IQ
+,,qc,,,,,,,,3,ccz,,,1,,,,,,IQ
+,,qc,,,,,,,,6,ccx,,,1,,,,,,IQ
+,,qc,,,,,,,,,,,,0,,,,,,IM
+,,qc,,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 272, 'column_start': 4, 'column_end': 14, 'source_line': 'qc.h(q[0])'}]",,,,1,,[272],,ROC
+,,qc,,,,,,,,8,ccz,,,0,,,,,,IdQ
+,,qc,,,,,,,,3,ccz,,,2,,,,,,IdQ
+,,qc,,,,,,,,3,ccz,,,1,,,,,,IdQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,22,0.20740794856486894,,,,,2,,,,,,,LC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,19,0.25703103750634043,,,,,2,,,,,,,LC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,21,0.22278132729707625,,,,,2,,,,,,,LC
+,,qc,31,5,,,,,"[[0, 0, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0], [0, 1, 0, 0]]",,,,,,"[0, 1]",,117,,,CG

@@ -1,0 +1,8 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,litmus_circuit,30,33,,22,,LPQ
+,litmus_circuit,30,52,,32,,LPQ
+,litmus_circuit,30,33,,55,,LPQ
+,litmus_circuit,30,33,,73,,LPQ
+,litmus_circuit,30,33,,97,,LPQ
+,litmus_circuit,30,33,,151,,LPQ
+,fixed_litmus_circuit,30,33,,167,,LPQ

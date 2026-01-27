@@ -1,0 +1,11 @@
+assign_parameter_calls,assign_parameters_count,backend,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,error,execute_calls,execute_count,explanation,lenght_op,likelihood,operations,parallel_op,qubit,repetitions,row,rows,run_calls,run_count,suggestion,type
+,,,,,,circuit,,,,,,,,,,,1,,,,,,,IM
+,,,,,,circuit,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 270, 'column_start': 4, 'column_end': 16, 'source_line': 'circuit.h(0)'}]",,,1,,[270],,,,ROC
+,,Custom Backend,,,circuit,circuit,,,{'CustomGate': 0.03512},,,,12,0.11705723656092025,,5,,,,,,,,LC
+{},0,,{},0,,transpiled_circuit,,,,{},0,,,,,,,,,,"[{'circuit': 'transpiled_circuit', 'row': 296, 'column_start': 24, 'column_end': 70}]",1,,NC
+{},0,,{},0,,optimized_circuit,,,,{},0,,,,,,,,,,"[{'circuit': 'optimized_circuit', 'row': 60, 'column_start': 23, 'column_end': 68}]",1,,NC
+{},0,,{},0,,optimized_circuit_dropped_rz,,,,{},0,,,,,,,,,,"[{'circuit': 'optimized_circuit_dropped_rz', 'row': 61, 'column_start': 34, 'column_end': 90}]",1,,NC
+,,Custom Backend,,,circuit,circuit,,,{'CustomGate': 0.03512},,,,14,0.0818712293767893,,5,,,,,,,,LC
+,,,,,,circuit,69,26,,,,,,,,,,,35,,,,,LPQ
+,,,,,,circuit,69,26,,,,,,,,,,,56,,,,,LPQ
+,,,,,,circuit,69,26,,,,,,,,,,,82,,,,,LPQ

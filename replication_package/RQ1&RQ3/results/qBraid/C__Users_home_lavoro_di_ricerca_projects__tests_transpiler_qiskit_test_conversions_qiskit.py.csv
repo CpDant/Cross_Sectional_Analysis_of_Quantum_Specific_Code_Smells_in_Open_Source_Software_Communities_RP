@@ -1,0 +1,35 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,matrix,operation_distance,operation_name,operations,parallel_op,qubit,qubits,repetitions,row,rows,suggestion,type
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'ccz', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 381, 'column_start': 4, 'column_end': 31, 'source_line': 'qiskit_circuit.ccz(0, 1, 2)'}, {'operation_name': 'ecr', 'qubits_affected': [1, 2], 'clbits_affected': [], 'row': 382, 'column_start': 4, 'column_end': 28, 'source_line': 'qiskit_circuit.ecr(1, 2)'}, {'operation_name': 'cs', 'qubits_affected': [2, 0], 'clbits_affected': [], 'row': 383, 'column_start': 4, 'column_end': 27, 'source_line': 'qiskit_circuit.cs(2, 0)'}]",,,,1,,"[381, 382, 383]",,ROC
+,,qiskit_circuit,,,,,,,,4,iswap,,,3,,,,,,IQ
+,,qiskit_circuit,,,,,,,,7,barrier,,,3,,,,,,IQ
+,,qiskit_circuit,,,,,,,,16,barrier,,,4,,,,,,IQ
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,15,0.013702396631279246,,,,,8,,,,,,,LC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'delay', 'qubits_affected': [300, 0], 'clbits_affected': [], 'row': 446, 'column_start': 8, 'column_end': 36, 'source_line': 'qiskit_circuit.delay(300, 0)'}]",,,,1,,[446],,ROC
+,,qiskit_circuit,,,,,,,,6,iswap,,,3,,,,,,IQ
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,15,0.008014862964351712,,,,,9,,,,,,,LC
+,,cirq_circuit,46,24,,,,,,,,,,,,,48,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,,,48,,,CG
+,,cirq_circuit,46,24,,,,,,,,,,,,,82,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,,,82,,,CG
+,,cirq_circuit,46,24,,,,,,,,,,,,,94,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,,,94,,,CG
+,,circuit_0,30,11,,,,,,,,,,,,,104,,,CG
+,,circuit_1,30,11,,,,,,,,,,,,,105,,,CG
+,,cirq_circuit,55,22,,,,,,,,,,,,,46,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,47,,,LPQ
+,,cirq_circuit,55,22,,,,,,,,,,,,,56,,,LPQ
+,,cirq_circuit,59,26,,,,,,,,,,,,,70,,,LPQ
+,,cirq_circuit,55,22,,,,,,,,,,,,,92,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,93,,,LPQ
+,,qiskit_circuit,57,24,,,,,,,,,,,,,119,,,LPQ
+,,qiskit_circuit,57,24,,,,,,,,,,,,,139,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,154,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,176,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,187,,,LPQ
+,,qiskit_circuit,74,20,,,,,,,,,,,,,196,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,206,,,LPQ
+,,qiskit_circuit,53,20,,,,,,,,,,,,,215,,,LPQ
+,,qiskit_circuit,74,20,,,,,,,,,,,,,225,,,LPQ
+,,qiskit_circuit,74,20,,,,,,,,,,,,,236,,,LPQ
+,,qiskit_circuit,78,24,,,,,,,,,,,,,263,,,LPQ
+,,cirq_circuit,42,9,,,,,,,,,,,,,285,,,LPQ

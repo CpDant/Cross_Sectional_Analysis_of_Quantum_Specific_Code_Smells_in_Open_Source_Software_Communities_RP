@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,qc_exp1,74,9,,,,49,,CG
+,qc_exp1,74,9,,,,50,,CG

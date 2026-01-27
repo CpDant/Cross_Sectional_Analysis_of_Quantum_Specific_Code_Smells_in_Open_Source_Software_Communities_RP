@@ -1,0 +1,16 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,circ,,,,,,,,,"[{'operation_name': 'reset', 'qubits_affected': [0], 'clbits_affected': [], 'row': 265, 'column_start': 4, 'column_end': 17, 'source_line': 'circ.reset(0)'}]",,,1,,[265],,ROC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,10,0.23929420321480233,,,,4,,,,,,LC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,12,0.11705723656092025,,,,5,,,,,,LC
+,,circ,,,,,,,3,reset,,,1,,,,,IQ
+,,circ,,,,,,,5,reset,,,2,,,,,IQ
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,13,0.15581592120118226,,,,4,,,,,,LC
+,,circ,42,18,,,,,,,,,,,42,,,LPQ
+,,circ,42,18,,,,,,,,,,,52,,,LPQ
+,,circ,42,18,,,,,,,,,,,58,,,LPQ
+,,circ,42,18,,,,,,,,,,,64,,,LPQ
+,,circ,42,18,,,,,,,,,,,71,,,LPQ
+,,circ,42,18,,,,,,,,,,,81,,,LPQ
+,,circ,42,18,,,,,,,,,,,92,,,LPQ
+,,circ,42,18,,,,,,,,,,,103,,,LPQ
+,,circ,42,18,,,,,,,,,,,113,,,LPQ

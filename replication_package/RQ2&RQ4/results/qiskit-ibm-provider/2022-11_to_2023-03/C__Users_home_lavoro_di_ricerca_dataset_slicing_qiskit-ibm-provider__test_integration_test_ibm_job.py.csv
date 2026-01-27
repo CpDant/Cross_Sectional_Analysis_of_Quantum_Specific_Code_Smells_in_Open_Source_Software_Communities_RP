@@ -1,0 +1,6 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,,72,20,,63,,LPQ
+,,67,34,,79,,LPQ
+,,77,31,,242,,LPQ
+,,77,31,,243,,LPQ
+,,79,27,,466,,LPQ

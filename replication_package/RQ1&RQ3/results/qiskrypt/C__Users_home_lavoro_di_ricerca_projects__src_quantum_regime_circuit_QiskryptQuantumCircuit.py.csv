@@ -1,0 +1,15 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,,60,13,,<Call to Operator>,,8815,,CG
+,,60,13,,<Call to Operator>,,8852,,CG
+,,60,13,,<Call to Operator>,,8889,,CG
+,,60,13,,<Call to Operator>,,8926,,CG
+,,60,13,,<Call to Operator>,,8963,,CG
+,,37,13,,<Call to Operator>,,9668,,CG
+,,37,13,,<Call to Operator>,,9728,,CG
+,,39,13,,<Call to Operator>,,9788,,CG
+,,39,13,,<Call to Operator>,,9848,,CG
+,,38,13,,<Call to Operator>,,10119,,CG
+,,38,13,,<Call to Operator>,,10197,,CG
+,,38,13,,<Call to Operator>,,10304,,CG
+,,38,13,,<Call to Operator>,,10382,,CG
+,,38,13,,<Call to Operator>,,10460,,CG

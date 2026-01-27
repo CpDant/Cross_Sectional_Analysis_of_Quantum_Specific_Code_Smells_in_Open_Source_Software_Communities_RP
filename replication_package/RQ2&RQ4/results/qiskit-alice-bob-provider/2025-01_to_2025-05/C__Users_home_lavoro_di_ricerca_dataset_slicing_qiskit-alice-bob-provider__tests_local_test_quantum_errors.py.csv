@@ -1,0 +1,6 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,circ,,,,,,,,,2,,,,,IM
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,14,0.22278132729707625,,3,,,,,,LC
+,,circ,,,,,,,"[{'operation_name': 'measure_x', 'qubits_affected': [0, 0], 'clbits_affected': [], 'row': 277, 'column_start': 4, 'column_end': 24, 'source_line': 'circ.measure_x(0, 0)'}]",,,1,,[277],,ROC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,15,0.20012378141127074,,3,,,,,,LC
+,,circ,,,,,,,"[{'operation_name': 'y', 'qubits_affected': [0], 'clbits_affected': [], 'row': 313, 'column_start': 4, 'column_end': 13, 'source_line': 'circ.y(0)'}, {'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 319, 'column_start': 4, 'column_end': 13, 'source_line': 'circ.h(0)'}]",,,1,,"[313, 319]",,ROC

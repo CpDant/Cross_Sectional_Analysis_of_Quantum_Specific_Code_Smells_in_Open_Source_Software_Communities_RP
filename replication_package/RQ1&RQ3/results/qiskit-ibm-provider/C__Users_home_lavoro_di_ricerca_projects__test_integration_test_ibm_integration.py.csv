@@ -1,0 +1,13 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,qubit,repetitions,row,rows,suggestion,type
+,quantum_circuit,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 271, 'column_start': 8, 'column_end': 39, 'source_line': 'quantum_circuit.h(qubit_reg[0])'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 272, 'column_start': 8, 'column_end': 54, 'source_line': 'quantum_circuit.cx(qubit_reg[0], qubit_reg[1])'}, {'operation_name': 'measure', 'qubits_affected': [0, 1], 'clbits_affected': [0, 1], 'row': 273, 'column_start': 8, 'column_end': 53, 'source_line': 'quantum_circuit.measure(qubit_reg, clbit_reg)'}]",,2,,"[271, 272, 273]",,ROC
+,qc_extra,,,,"[{'operation_name': 'measure', 'qubits_affected': [0, 1], 'clbits_affected': [0, 1], 'row': 287, 'column_start': 8, 'column_end': 46, 'source_line': 'qc_extra.measure(qubit_reg, clbit_reg)'}]",,1,,[287],,ROC
+,quantum_circuit,,,,,0,,,,,IM
+,quantum_circuit,,,,,1,,,,,IM
+,qc_extra,,,,,0,,,,,IM
+,qc_extra,,,,,1,,,,,IM
+,_qc1,51,13,,,,,61,,,LPQ
+,quantum_circuit,80,20,,,,,80,,,LPQ
+,,84,20,,,,,93,,,LPQ
+,,10,17,,,,,107,,,LPQ
+,,69,13,,,,,121,,,LPQ
+,quantum_circuit,79,36,,,,,135,,,LPQ

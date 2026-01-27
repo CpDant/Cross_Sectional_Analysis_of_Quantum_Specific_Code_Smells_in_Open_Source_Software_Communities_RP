@@ -1,0 +1,102 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,matrix,operation_distance,operation_name,operations,parallel_op,qubit,qubits,repetitions,row,rows,suggestion,type
+,,expected_qiskit_circuit,,,,,,,,,,,,0,,,,,,IM
+,,expected_qiskit_circuit,,,,,,,,,,,,1,,,,,,IM
+,,qiskit_circuit,,,,,,,,,,,,0,,,,,,IM
+,,qiskit_circuit,,,,,,,,,,,,1,,,,,,IM
+,,qiskit_circuit,,,,,,,,,,,,2,,,,,,IM
+,,qc,,,,,,,,,,,,0,,,,,,IM
+,,qc,,,,,,,,,,,,1,,,,,,IM
+,,qiskit_circuit,,,,,,,,4,cx,,,1,,,,,,IQ
+,,qiskit_circuit,,,,,,,,12,cx,,,2,,,,,,IQ
+,,qiskit_circuit,,,,,,,,15,rxx,,,2,,,,,,IQ
+Custom Backend,expected_qiskit_circuit,expected_qiskit_circuit,,,{'CustomGate': 0.03512},,19,0.03349376147301476,,,,,5,,,,,,,LC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,53,1.3335878586126126e-10,,,,,12,,,,,,,LC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,22,0.00038381945102312996,,,,,10,,,,,,,LC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1369, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,1,,[1369],,ROC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'u', 'qubits_affected': [0], 'clbits_affected': [], 'row': 592, 'column_start': 8, 'column_end': 44, 'source_line': 'qiskit_circuit.u(theta, phi, lam, 0)', 'params': ['theta', 'phi', 'lam']}]",,,,1,,[592],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 656, 'column_start': 8, 'column_end': 31, 'source_line': 'qiskit_circuit.cx(0, 1)'}, {'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 657, 'column_start': 8, 'column_end': 36, 'source_line': 'qiskit_circuit.measure(0, 0)'}, {'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 666, 'column_start': 8, 'column_end': 27, 'source_line': 'qiskit_circuit.h(0)'}]",,,,1,,"[656, 657, 666]",,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 837, 'column_start': 8, 'column_end': 27, 'source_line': 'qiskit_circuit.h(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 838, 'column_start': 8, 'column_end': 45, 'source_line': 'qiskit_circuit.cx(0, 1, ctrl_state=0)', 'params': ['ctrl_state=0']}]",,,,1,,"[837, 838]",,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'rx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 897, 'column_start': 8, 'column_end': 32, 'source_line': 'circuit.rx(np.pi / 4, 0)', 'params': ['np.pi / 4']}]",,,,1,,[897],,ROC
+,,expected_qiskit_circuit,,,,,,,,,,,,2,,,,,,IM
+,,qiskit_circuit,,,,,,,,5,cx,,,2,,,,,,IdQ
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 1369, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,1,,[1369],,ROC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+Custom Backend,expected_qiskit_circuit,expected_qiskit_circuit,,,{'CustomGate': 0.03512},,21,0.023425936822125012,,,,,5,,,,,,,LC
+,,expected_qiskit_circuit,,,,,,,,5,cx,,,2,,,,,,IQ
+,,expected_qiskit_circuit,,,,,,,,4,cx,,,2,,,1360,,,IQ
+,,qiskit_circuit,,,,,,,,5,cx,,,2,,,,,,IQ
+,,qiskit_circuit,,,,,,,,6,reset,,,2,,,,,,IQ
+,,qiskit_circuit,,,,,,,,10,cx,,,1,,,,,,IdQ
+,,qiskit_circuit,,,,,,,,10,cx,,,1,,,,,,IQ
+,,qiskit_circuit,,,,,,,,14,rxx,,,2,,,,,,IQ
+Custom Backend,expected_qiskit_circuit,expected_qiskit_circuit,,,{'CustomGate': 0.03512},,19,0.016980743731523702,,,,,6,,,,,,,LC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,53,2.004964876617179e-11,,,,,13,,,,,,,LC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1369, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,1,,[1369],,ROC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+,,qiskit_circuit,,,,,,,,11,cx,,,1,,,,,,IQ
+,,qiskit_circuit,,,,,,,,14,cx,,,2,,,,,,IQ
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,74,2.9337087990082844e-20,,,,,17,,,,,,,LC
+,,qiskit_circuit,,,,,,,,,,,,0,,,524,,,IM
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,75,2.333271869289867e-19,,,,,16,,,,,,,LC
+,,qiskit_circuit,,,,,,,,13,reset,,,3,,,,,,IdQ
+,,expected_qiskit_circuit,,,,,,,,9,measure_all,,,3,,,1304,,,IQ
+,,qiskit_circuit,,,,,,,,13,reset,,,3,,,,,,IQ
+,,qiskit_circuit,,,,,,,,6,cx,,,3,,,,,,IQ
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 1369, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,1,,[1369],,ROC
+,,expected_qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,74,4.134209435242146e-19,,,,,16,,,,,,,LC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+,,qiskit_circuit,,,,,,,,4,cx,,,2,,,496,,,IQ
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,71,1.4351030667387396e-20,,,,,18,,,,,,,LC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+,,qiskit_circuit,,,,,,,,4,cx,,,2,,,569,,,IQ
+,,qiskit_circuit,,,,,,,,16,measure_all,,,3,,,,,,IQ
+,,qiskit_circuit,,,,,,,,12,cx,,,3,,,570,,,IQ
+Custom Backend,expected_qiskit_circuit,expected_qiskit_circuit,,,{'CustomGate': 0.03512},,20,0.013702396631279246,,,,,6,,,,,,,LC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,72,9.892923527293872e-20,,,,,17,,,,,,,LC
+,,circuit,,,,,,,,12,cx,,,1,,,,,,IQ
+,,circuit,,,,,,,,4,cx,,,1,,,,,,IQ
+,,circuit,,,,,,,,16,cx,,,1,,,,,,IQ
+,,circuit,,,,,,,,12,cx,,,2,,,,,,IQ
+,,circuit,,,,,,,,14,rxx,,,2,,,,,,IQ
+,,circuit,,,,,,,,19,cx,,,2,,,,,,IQ
+,,circuit,,,,,,,,17,append,,,3,,,,,,IQ
+,,circuit,,,,,,,,,,,,0,,,,,,IM
+,,circuit,,,,,,,,,,,,1,,,,,,IM
+,,circuit,,,,,,,,,,,,2,,,,,,IM
+,,circuit,,,,,,,,12,cx,,,1,,,,,,IdQ
+,,circuit,,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 445, 'column_start': 8, 'column_end': 27, 'source_line': 'qiskit_circuit.h(0)'}]",,,,2,,[445],,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'u', 'qubits_affected': [0], 'clbits_affected': [], 'row': 592, 'column_start': 8, 'column_end': 44, 'source_line': 'qiskit_circuit.u(theta, phi, lam, 0)', 'params': ['theta', 'phi', 'lam']}]",,,,1,,[592],,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 656, 'column_start': 8, 'column_end': 31, 'source_line': 'qiskit_circuit.cx(0, 1)'}, {'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 657, 'column_start': 8, 'column_end': 36, 'source_line': 'qiskit_circuit.measure(0, 0)'}, {'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 666, 'column_start': 8, 'column_end': 27, 'source_line': 'qiskit_circuit.h(0)'}]",,,,1,,"[656, 657, 666]",,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 837, 'column_start': 8, 'column_end': 27, 'source_line': 'qiskit_circuit.h(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 838, 'column_start': 8, 'column_end': 45, 'source_line': 'qiskit_circuit.cx(0, 1, ctrl_state=0)', 'params': ['ctrl_state=0']}]",,,,1,,"[837, 838]",,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+Custom Backend,circuit,circuit,,,{'CustomGate': 0.03512},,79,8.337559263615584e-23,,,,,18,,,,,,,LC
+,,qiskit_circuit,,,,,,,,4,cx,,,2,,,595,,,IQ
+,,qiskit_circuit,,,,,,,,12,cx,,,3,,,596,,,IQ
+,,qiskit_circuit,,,,,,,,,,"[{'operation_name': 'u', 'qubits_affected': [0], 'clbits_affected': [], 'row': 1626, 'column_start': 4, 'column_end': 40, 'source_line': 'qiskit_circuit.u(theta, phi, lam, 0)', 'params': ['theta', 'phi', 'lam']}]",,,,1,,[1626],,ROC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,71,2.2997141637251175e-18,,,,,16,,,,,,,LC
+,,circuit,,,,,,,,6,measure_all,,,1,,,,,,IQ
+,,circuit,,,,,,,,15,rxx,,,2,,,,,,IQ
+,,circuit,,,,,,,,18,append,,,3,,,,,,IQ
+,,circuit,,,,,,,,20,append,,,3,,,797,,,IQ
+,,circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1344, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,2,,[1344],,ROC
+,,circuit,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 1405, 'column_start': 8, 'column_end': 45, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,4,,[1405],,ROC
+Custom Backend,circuit,circuit,,,{'CustomGate': 0.03512},,79,1.4049079887021676e-21,,,,,17,,,,,,,LC
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,73,7.325201953275615e-19,,,,,16,,,,,,,LC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,22,0.00017479929548970817,,,,,11,,,,,,,LC
+,,qiskit_circuit,,,,,,,,4,rxx,,,2,,,726,,,IQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,25,5.372281053432959e-05,,,,,11,,,,,,,LC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,24,0.00018775567344089282,,,,,10,,,,,,,LC
+,,qc,,,,,,,,7,measure,,,1,,,,,,IQ
+,,qc,,,,,,,,7,cx,,,1,,,965,,,IQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,24,7.960720495600158e-05,,,,,11,,,,,,,LC
+,,,81,26,,,,,"[0, 1]",,,,,,,,1256,,,CG
+,,expected_qiskit_circuit,83,9,,,,,<Call to to_matrix>,,,,,,"[0, 1]",,1261,,,CG

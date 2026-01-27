@@ -1,0 +1,13 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,qprogram_qiskit,41,16,,,,66,,CG
+,qprogram_braket,41,16,,,,67,,CG
+,qprogram_qiskit,41,16,,,,89,,CG
+,qprogram_cirq,37,14,,,,90,,CG
+,qprogram_qiskit,41,16,,,,100,,CG
+,qprogram_braket,41,16,,,,101,,CG
+,braket_circuit,71,17,,,,56,,LPQ
+,braket_circuit,75,19,,,,62,,LPQ
+,cirq_circuit,73,19,,,,73,,LPQ
+,cirq_circuit,73,19,,,,79,,LPQ
+,qiskit_circuit,71,17,,,,85,,LPQ
+,qiskit_circuit,75,19,,,,96,,LPQ

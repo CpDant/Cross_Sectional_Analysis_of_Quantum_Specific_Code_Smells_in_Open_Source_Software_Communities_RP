@@ -1,0 +1,7 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,qubit,repetitions,row,rows,suggestion,type
+,if_else_circ,,,,,0,,,,,IM
+,while_circ,,,,,0,,,,,IM
+,switch_circ,,,,,0,,,,,IM
+,if_else_circ,,,,"[{'operation_name': 'rz', 'qubits_affected': [0], 'clbits_affected': [], 'row': 231, 'column_start': 8, 'column_end': 39, 'source_line': 'if_else_circ.rz(np.pi, qreg[0])  # Apply RZ(pi) if measured 1', 'params': ['np.pi']}]",,1,,[231],,ROC
+,switch_circ,,,,"[{'operation_name': 'rz', 'qubits_affected': [0], 'clbits_affected': [], 'row': 263, 'column_start': 12, 'column_end': 42, 'source_line': 'switch_circ.rz(np.pi, qreg[0])  # Apply RZ(pi) if measured 0', 'params': ['np.pi']}]",,1,,[263],,ROC
+,circuit,45,18,,,,,97,,,LPQ

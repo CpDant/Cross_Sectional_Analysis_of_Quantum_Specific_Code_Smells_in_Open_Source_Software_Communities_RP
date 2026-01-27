@@ -1,0 +1,7 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 398, 'column_start': 12, 'column_end': 38}]",1,,NC
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 404, 'column_start': 12, 'column_end': 38}]",1,,NC
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 170, 'column_start': 12, 'column_end': 26}]",1,,NC
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 40, 'column_start': 12, 'column_end': 26}]",1,,NC
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 148, 'column_start': 12, 'column_end': 26}]",1,,NC
+,,,,,circuit,81,18,,,,62,,,,LPQ

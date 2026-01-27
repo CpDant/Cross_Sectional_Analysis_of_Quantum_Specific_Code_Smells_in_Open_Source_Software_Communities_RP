@@ -1,0 +1,5 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,trans_circs,,,{},0,,,"[{'circuit': 'trans_circs', 'row': 59, 'column_start': 10, 'column_end': 47}]",1,,NC
+{},0,{},0,,trans_circs,,,{},0,,,"[{'circuit': 'trans_circs', 'row': 297, 'column_start': 10, 'column_end': 47}]",1,,NC
+,,,,,,69,19,,,,29,,,,LPQ
+,,,,,,6,19,,,,58,,,,LPQ

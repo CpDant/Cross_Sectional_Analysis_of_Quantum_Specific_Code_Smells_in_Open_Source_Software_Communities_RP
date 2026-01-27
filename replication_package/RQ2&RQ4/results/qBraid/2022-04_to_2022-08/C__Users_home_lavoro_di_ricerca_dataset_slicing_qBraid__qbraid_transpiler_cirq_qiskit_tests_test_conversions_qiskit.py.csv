@@ -1,0 +1,16 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,matrix,operations,parallel_op,qubit,qubits,repetitions,row,rows,suggestion,type
+,,circ,,,,,,,,,,0,,,,,,IM
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,3,0.47199716873841124,,,7,,,,,,,LC
+,,circ,,,,,,,,"[{'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 337, 'column_start': 8, 'column_end': 41, 'source_line': 'circ.measure(qreg, circ.cregs[0])'}]",,,,1,,[337],,ROC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,3,0.42399360561033933,,,8,,,,,,,LC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,4,0.3674959224370496,,,7,,,,,,,LC
+,,cirq_circuit,46,24,,,,,,,,,,,47,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,47,,,CG
+,,cirq_circuit,46,24,,,,,,,,,,,58,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,58,,,CG
+,,cirq_circuit,46,24,,,,,,,,,,,70,,,CG
+,,circuit_cirq,70,48,,,,,,,,,,,70,,,CG
+,,circuit_0,30,11,,,,,,,,,,,80,,,CG
+,,circuit_1,30,11,,,,,,,,,,,81,,,CG
+,,cirq2,39,24,,,,,,,,,,,179,,,CG
+,,cirq1,56,41,,,,,,,,,,,179,,,CG

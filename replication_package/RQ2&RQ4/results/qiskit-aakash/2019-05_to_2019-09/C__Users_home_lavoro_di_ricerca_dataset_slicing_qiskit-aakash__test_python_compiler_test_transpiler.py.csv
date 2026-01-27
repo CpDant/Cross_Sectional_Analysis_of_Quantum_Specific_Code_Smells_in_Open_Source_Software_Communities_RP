@@ -1,0 +1,17 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,circuit,73,20,,58,,LPQ
+,circuit,54,20,,61,,LPQ
+,circuit,63,20,,77,,LPQ
+,circuit,59,23,,133,,LPQ
+,qc,83,18,,163,,LPQ
+,qc,42,20,,225,,LPQ
+,,54,20,,245,,LPQ
+,circuit,47,20,,309,,LPQ
+,qc,42,20,,362,,LPQ
+,circuits,48,20,,380,,LPQ
+,qc,86,25,,410,,LPQ
+,qc,63,25,,425,,LPQ
+,circ,52,17,,474,,LPQ
+,circuit,68,23,,496,,LPQ
+,qc,58,17,,532,,LPQ
+,qc,53,15,,544,,LPQ

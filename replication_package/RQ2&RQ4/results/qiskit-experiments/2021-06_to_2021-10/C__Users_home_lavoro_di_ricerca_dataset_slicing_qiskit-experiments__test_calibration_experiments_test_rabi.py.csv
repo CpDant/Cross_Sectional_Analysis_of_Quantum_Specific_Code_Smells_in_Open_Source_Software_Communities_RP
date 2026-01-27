@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,circuits,44,20,,201,,LPQ
+,par_circ,69,13,,281,,LPQ

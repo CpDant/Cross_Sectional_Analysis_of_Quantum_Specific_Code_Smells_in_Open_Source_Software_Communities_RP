@@ -1,0 +1,14 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,qiskit_circuit,55,21,,32,,LPQ
+,qasm3_program,56,22,,33,,LPQ
+,braket_circuit,55,21,,40,,LPQ
+,qasm3_program,56,22,,41,,LPQ
+,braket_circuit,55,21,,48,,LPQ
+,qasm3_program,56,22,,49,,LPQ
+,circuit,46,20,,77,,LPQ
+,circuit,48,21,,78,,LPQ
+,cirq_circuit,53,21,,79,,LPQ
+,qasm3_program,58,24,,80,,LPQ
+,qasm2_program,58,24,,81,,LPQ
+,circuit,48,21,,90,,LPQ
+,qasm3_program,56,22,,91,,LPQ

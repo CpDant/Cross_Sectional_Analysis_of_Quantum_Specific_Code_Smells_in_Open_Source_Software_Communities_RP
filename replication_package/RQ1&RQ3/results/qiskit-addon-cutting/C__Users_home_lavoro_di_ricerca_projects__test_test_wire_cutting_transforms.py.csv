@@ -1,0 +1,7 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,circuit,,,,,,,,,"[{'operation_name': 'add_register', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 412, 'column_start': 4, 'column_end': 30, 'source_line': 'circuit.add_register(reg1)'}]",,,1,,[412],,ROC
+,,circuit,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 414, 'column_start': 4, 'column_end': 20, 'source_line': 'circuit.cx(0, 1)'}]",,,1,,[414],,ROC
+,,circuit,,,,,,,,,"[{'operation_name': 'add_register', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [], 'row': 434, 'column_start': 4, 'column_end': 30, 'source_line': 'circuit.add_register(reg1)'}]",,,1,,[434],,ROC
+,,circuit,,,,,,,3,add_register,,,3,,,,,IQ
+,,circuit,,,,,,,9,cx,,,4,,,,,IQ
+Custom Backend,circuit,circuit,,,{'CustomGate': 0.03512},,23,7.213135377812214e-13,,,,34,,,,,,LC

@@ -1,0 +1,5 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,cirq_circuit,46,24,,,,39,,CG
+,circuit_cirq,70,48,,,,39,,CG
+,cirq_circuit,46,24,,,,49,,CG
+,circuit_cirq,70,48,,,,49,,CG

@@ -1,0 +1,7 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,circuit,42,17,,<Call to UnitaryGate>,[0],363,,CG
+,circuit,42,17,,<Call to UnitaryGate>,[0],374,,CG
+,,65,15,,,,65,,LPQ
+,,67,16,,,,73,,LPQ
+,,63,18,,,,253,,LPQ
+,bell,46,16,,,,483,,LPQ

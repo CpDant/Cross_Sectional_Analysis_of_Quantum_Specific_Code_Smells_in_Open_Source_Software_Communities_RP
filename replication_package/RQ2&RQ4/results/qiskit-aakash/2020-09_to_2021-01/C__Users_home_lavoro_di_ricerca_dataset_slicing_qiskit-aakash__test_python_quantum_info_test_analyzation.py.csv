@@ -1,0 +1,4 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,qc,,,"[{'circuit': 'qc', 'row': 37, 'column_start': 13, 'column_end': 53}]",1,,,{},0,,NC
+{},0,{},0,,qc,,,"[{'circuit': 'qc', 'row': 88, 'column_start': 13, 'column_end': 53}]",1,,,{},0,,NC
+{},0,{},0,,qc,,,"[{'circuit': 'qc', 'row': 62, 'column_start': 13, 'column_end': 53}]",1,,,{},0,,NC

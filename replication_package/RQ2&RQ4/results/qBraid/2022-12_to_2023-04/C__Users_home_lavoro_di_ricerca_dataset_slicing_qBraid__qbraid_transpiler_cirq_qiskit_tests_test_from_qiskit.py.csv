@@ -1,0 +1,4 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,qiskit_circuit,,,,,,,,,"[{'operation_name': 'ccz', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 294, 'column_start': 4, 'column_end': 31, 'source_line': 'qiskit_circuit.ccz(0, 1, 2)'}, {'operation_name': 'ecr', 'qubits_affected': [1, 2], 'clbits_affected': [], 'row': 295, 'column_start': 4, 'column_end': 28, 'source_line': 'qiskit_circuit.ecr(1, 2)'}, {'operation_name': 'cs', 'qubits_affected': [2, 0], 'clbits_affected': [], 'row': 296, 'column_start': 4, 'column_end': 27, 'source_line': 'qiskit_circuit.cs(2, 0)'}]",,,1,,"[294, 295, 296]",,ROC
+,,qiskit_circuit,,,,,,,3,iswap,,,3,,,,,IQ
+Custom Backend,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,12,0.04963151979224702,,,,7,,,,,,LC

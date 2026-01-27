@@ -1,0 +1,18 @@
+assign_parameter_calls,assign_parameters_count,backend,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,error,execute_calls,execute_count,explanation,lenght_op,likelihood,matrix,operation_distance,operation_name,operations,parallel_op,qubit,qubits,repetitions,row,rows,run_calls,run_count,suggestion,type
+,,,,,,qiskit_circuit,,,,,,,,,,10,cx,,,1,,,,,,,,IdQ
+,,,,,,qiskit_circuit,,,,,,,,,,10,cx,,,1,,,,,,,,IQ
+,,,,,,qiskit_circuit,,,,,,,,,,5,cx,,,1,,,,,,,,IQ
+,,,,,,qiskit_circuit,,,,,,,,,,4,cx,,,1,,,,,,,,IQ
+,,,,,,qiskit_circuit,,,,,,,,,,,,,,0,,,,,,,,IM
+,,,,,,qiskit_circuit,,,,,,,,,,,,"[{'operation_name': 'u', 'qubits_affected': [0], 'clbits_affected': [], 'row': 472, 'column_start': 8, 'column_end': 44, 'source_line': 'qiskit_circuit.u(theta, phi, lam, 0)', 'params': ['theta', 'phi', 'lam']}]",,,,1,,[472],,,,ROC
+,,,,,,qiskit_circuit,,,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0], 'clbits_affected': [], 'row': 695, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,5,,[695],,,,ROC
+,,Custom Backend,,,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,,,40,6.156328444423599e-07,,,,,10,,,,,,,,,LC
+,,,,,,qiskit_circuit,,,,,,,,,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 695, 'column_start': 16, 'column_end': 53, 'source_line': 'expected_qiskit_circuit.measure_all()'}]",,,,5,,[695],,,,ROC
+,,Custom Backend,,,qiskit_circuit,qiskit_circuit,,,{'CustomGate': 0.03512},,,,41,1.8648733538852502e-06,,,,,9,,,,,,,,,LC
+{},0,,{},0,,braket_circuit,,,,{},0,,,,,,,,,,,,,,"[{'circuit': 'braket_circuit', 'row': 817, 'column_start': 13, 'column_end': 49}]",1,,NC
+{},0,,{},0,,qiskit_circuit,,,,{},0,,,,,,,,,,,,,,"[{'circuit': 'qiskit_circuit', 'row': 818, 'column_start': 17, 'column_end': 56}]",1,,NC
+{},0,,{},0,,qiskit_circuit,,,,{},0,,,,,,,,,,,,,,"[{'circuit': 'qiskit_circuit', 'row': 144, 'column_start': 10, 'column_end': 37}]",1,,NC
+{},0,,{},0,,braket_circuit,,,,{},0,,,,,,,,,,,,,,"[{'circuit': 'braket_circuit', 'row': 833, 'column_start': 20, 'column_end': 46}]",1,,NC
+,,,,,,circuit_from_gate_unitary,84,13,,,,,,,<Call to __class__>,,,,,,,,216,,,,,CG
+,,,,,,qiskit_circuit,84,38,,,,,,,,,,,,,,,178,,,,,LPQ
+,,,,,,qiskit_circuit,76,30,,,,,,,,,,,,,,,273,,,,,LPQ

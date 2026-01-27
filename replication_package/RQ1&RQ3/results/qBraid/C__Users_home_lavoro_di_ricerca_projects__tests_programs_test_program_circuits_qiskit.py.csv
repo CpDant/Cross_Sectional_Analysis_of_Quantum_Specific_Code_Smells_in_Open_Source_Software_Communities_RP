@@ -1,0 +1,2 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,repetitions,row,rows,suggestion,type
+,circuit,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 231, 'column_start': 4, 'column_end': 16, 'source_line': 'circuit.h(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 232, 'column_start': 4, 'column_end': 20, 'source_line': 'circuit.cx(0, 1)'}]",1,,"[231, 232]",,ROC

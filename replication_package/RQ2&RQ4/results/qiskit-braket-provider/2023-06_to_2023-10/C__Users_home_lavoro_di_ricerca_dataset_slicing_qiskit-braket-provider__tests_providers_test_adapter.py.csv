@@ -1,0 +1,4 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,braket_circuit,,,{},0,,,"[{'circuit': 'braket_circuit', 'row': 464, 'column_start': 13, 'column_end': 49}]",1,,NC
+{},0,{},0,,qiskit_circuit,,,{},0,,,"[{'circuit': 'qiskit_circuit', 'row': 465, 'column_start': 17, 'column_end': 56}]",1,,NC
+{},0,{},0,,braket_circuit,,,{},0,,,"[{'circuit': 'braket_circuit', 'row': 476, 'column_start': 20, 'column_end': 46}]",1,,NC

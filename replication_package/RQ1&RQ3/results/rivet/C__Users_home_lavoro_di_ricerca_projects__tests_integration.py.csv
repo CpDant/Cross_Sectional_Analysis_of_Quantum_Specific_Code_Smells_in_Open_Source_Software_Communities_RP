@@ -1,0 +1,6 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,combined_circuit,6,35,,43,,LPQ
+,circuit_part,10,35,,60,,LPQ
+,,6,23,,95,,LPQ
+,,6,23,,121,,LPQ
+,circuit,58,27,,181,,LPQ

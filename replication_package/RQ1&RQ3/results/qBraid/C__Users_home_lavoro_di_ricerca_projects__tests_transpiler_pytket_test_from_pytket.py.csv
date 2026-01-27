@@ -1,0 +1,5 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,pytket_circuit,53,20,,41,,LPQ
+,pytket_circuit,53,20,,50,,LPQ
+,pytket_circuit,53,20,,60,,LPQ
+,pytket_circuit,57,24,,69,,LPQ

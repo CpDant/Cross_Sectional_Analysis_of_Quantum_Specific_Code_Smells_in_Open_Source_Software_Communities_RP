@@ -1,0 +1,4 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,_circuit,18,33,,292,,LPQ
+,circuits,14,24,,365,,LPQ
+,circuits,14,24,,400,,LPQ

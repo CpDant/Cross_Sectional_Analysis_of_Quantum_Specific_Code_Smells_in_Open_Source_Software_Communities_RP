@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,,72,20,,50,,LPQ
+,large_qx,63,27,,79,,LPQ

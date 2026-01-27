@@ -1,0 +1,5 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,mock_input,59,9,,441,,LPQ
+,mock_input,62,12,,444,,LPQ
+,mock_input,59,9,,486,,LPQ
+,circuit,65,9,,859,,LPQ

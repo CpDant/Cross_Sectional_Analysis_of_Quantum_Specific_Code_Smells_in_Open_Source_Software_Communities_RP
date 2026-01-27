@@ -1,0 +1,6 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,,56,20,,,,62,,CG
+,,60,24,,,,65,,CG
+,,45,9,,,,86,,CG
+,cirq_circuit,77,20,,,,60,,LPQ
+,cirq_circuit,77,20,,,,83,,LPQ

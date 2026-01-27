@@ -1,0 +1,17 @@
+circuit,circuit_name,column_end,column_start,explanation,operation_distance,operation_name,qubit,row,suggestion,type
+,qcr1,,,,,,0,,,IM
+,qcr1,,,,,,1,,,IM
+,qcr2,,,,,,0,,,IM
+,qcr2,,,,,,1,,,IM
+,circuit,,,,,,0,,,IM
+,qcr1,,,,4,h,2,,,IdQ
+,qcr1,,,,4,h,3,,,IdQ
+,qcr1,,,,4,h,2,,,IQ
+,qcr1,,,,4,h,3,,,IQ
+,qc,82,17,,,,,44,,LPQ
+,,92,17,,,,,67,,LPQ
+,,80,17,,,,,97,,LPQ
+,circuit,83,39,,,,,115,,LPQ
+,,72,20,,,,,134,,LPQ
+,,72,20,,,,,155,,LPQ
+,,74,13,,,,,166,,LPQ

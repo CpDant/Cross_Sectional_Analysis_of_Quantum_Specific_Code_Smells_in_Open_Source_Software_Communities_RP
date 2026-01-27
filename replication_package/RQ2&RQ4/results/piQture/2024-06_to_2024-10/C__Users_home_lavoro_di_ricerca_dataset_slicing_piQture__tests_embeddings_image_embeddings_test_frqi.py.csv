@@ -1,0 +1,3 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,repetitions,row,rows,suggestion,type
+,test_circuit,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 395, 'column_start': 8, 'column_end': 29, 'source_line': 'test_circuit.cx(0, 1)'}]",1,,[395],,ROC
+,mock_circuit,,,,"[{'operation_name': 'clear', 'qubits_affected': [0], 'clbits_affected': [], 'row': 322, 'column_start': 12, 'column_end': 32, 'source_line': 'mock_circuit.clear()'}]",1,,[322],,ROC

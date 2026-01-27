@@ -1,0 +1,10 @@
+circuit,circuit_name,column_end,column_start,explanation,operation_distance,operation_name,operations,qubit,repetitions,row,rows,suggestion,type
+,circuit,,,,3,measure,,2,,,,,IQ
+,circuit,,,,,,"[{'operation_name': 'h', 'qubits_affected': [1], 'clbits_affected': [], 'row': 377, 'column_start': 8, 'column_end': 24, 'source_line': 'circuit.h(qr[1])'}, {'operation_name': 'cx', 'qubits_affected': [1, 2], 'clbits_affected': [], 'row': 378, 'column_start': 8, 'column_end': 32, 'source_line': 'circuit.cx(qr[1], qr[2])'}, {'operation_name': 'measure', 'qubits_affected': [0, 1, 2, 3], 'clbits_affected': [0, 1, 2, 3], 'row': 379, 'column_start': 8, 'column_end': 31, 'source_line': 'circuit.measure(qr, cr)'}]",,1,,"[377, 378, 379]",,ROC
+,circuit,,,,,,,1,,,,,IM
+,circuit,,,,,,,2,,,,,IM
+,circuit,,,,,,,0,,,,,IM
+,circuit,,,,,,,3,,,,,IM
+,circuit,79,18,,,,,,,197,,,LPQ
+,circuit,87,18,,,,,,,235,,,LPQ
+,circuit,79,18,,,,,,,275,,,LPQ

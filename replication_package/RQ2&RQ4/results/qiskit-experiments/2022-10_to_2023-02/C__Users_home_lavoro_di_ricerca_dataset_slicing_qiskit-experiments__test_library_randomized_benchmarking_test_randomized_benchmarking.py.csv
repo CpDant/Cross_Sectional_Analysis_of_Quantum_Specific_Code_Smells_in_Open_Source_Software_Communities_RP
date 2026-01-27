@@ -1,0 +1,2 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,repetitions,row,rows,suggestion,type
+,cliff_circ_with_param,,,,"[{'operation_name': 'rz', 'qubits_affected': [0], 'clbits_affected': [], 'row': 436, 'column_start': 4, 'column_end': 38, 'source_line': 'cliff_circ_with_param.rz(theta, 0)', 'params': ['theta']}, {'operation_name': 'sx', 'qubits_affected': [0], 'clbits_affected': [], 'row': 437, 'column_start': 4, 'column_end': 31, 'source_line': 'cliff_circ_with_param.sx(0)'}]",1,,"[436, 437]",,ROC

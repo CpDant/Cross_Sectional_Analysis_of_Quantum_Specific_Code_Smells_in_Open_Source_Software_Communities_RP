@@ -1,0 +1,6 @@
+assign_parameter_calls,assign_parameters_count,backend,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,error,execute_calls,execute_count,explanation,lenght_op,likelihood,parallel_op,qubit,row,run_calls,run_count,suggestion,type
+{},0,,{},0,,c,,,,{},0,,,,,,,"[{'circuit': 'c', 'row': 87, 'column_start': 12, 'column_end': 21}]",1,,NC
+,,,,,,c,,,,,,,,,,2,,,,,IM
+,,Custom Backend,,,c,c,,,{'CustomGate': 0.03512},,,,8,0.3185266268661025,4,,,,,,LC
+{},0,,{},0,,circ,,,,{},0,,,,,,,"[{'circuit': 'circ', 'row': 39, 'column_start': 17, 'column_end': 29}]",1,,NC
+{},0,,{},0,,circ,,,,{},0,,,,,,,"[{'circuit': 'circ', 'row': 61, 'column_start': 17, 'column_end': 29}]",1,,NC

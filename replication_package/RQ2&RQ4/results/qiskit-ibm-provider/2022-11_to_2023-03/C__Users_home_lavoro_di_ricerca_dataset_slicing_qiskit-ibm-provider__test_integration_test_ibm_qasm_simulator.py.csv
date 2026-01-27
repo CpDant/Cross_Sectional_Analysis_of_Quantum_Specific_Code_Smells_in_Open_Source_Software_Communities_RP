@@ -1,0 +1,7 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,quantum_circuit,69,17,,58,,LPQ
+,,66,17,,81,,LPQ
+,,58,17,,110,,LPQ
+,,72,20,,137,,LPQ
+,,72,20,,162,,LPQ
+,,74,13,,176,,LPQ

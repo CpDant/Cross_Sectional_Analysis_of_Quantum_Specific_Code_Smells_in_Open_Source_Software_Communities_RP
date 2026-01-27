@@ -1,0 +1,5 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,parameterized_circuit,14,37,,542,,LPQ
+,circuits,22,32,,554,,LPQ
+,parameterized_circuit,14,37,,581,,LPQ
+,circuits,22,32,,604,,LPQ

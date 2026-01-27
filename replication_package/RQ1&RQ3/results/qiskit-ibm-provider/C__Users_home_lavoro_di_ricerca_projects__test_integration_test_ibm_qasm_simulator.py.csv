@@ -1,0 +1,11 @@
+circuit,circuit_name,column_end,column_start,explanation,qubit,row,suggestion,type
+,qcr1,,,,0,,,IM
+,qcr1,,,,1,,,IM
+,qcr2,,,,0,,,IM
+,qcr2,,,,1,,,IM
+,quantum_circuit,69,17,,,56,,LPQ
+,,66,17,,,79,,LPQ
+,,58,17,,,108,,LPQ
+,,54,20,,,135,,LPQ
+,,54,20,,,160,,LPQ
+,,56,13,,,174,,LPQ

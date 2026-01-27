@@ -1,0 +1,8 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,bell,56,24,,67,,LPQ
+,ghz,59,23,,68,,LPQ
+,qlist,58,25,,171,,LPQ
+,qc,68,27,,204,,LPQ
+,qc,65,28,,207,,LPQ
+,circ1,51,26,,421,,LPQ
+,circ2,51,26,,429,,LPQ

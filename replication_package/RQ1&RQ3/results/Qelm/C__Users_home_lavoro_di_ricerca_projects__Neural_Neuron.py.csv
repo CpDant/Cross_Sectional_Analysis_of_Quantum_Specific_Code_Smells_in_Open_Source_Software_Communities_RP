@@ -1,0 +1,2 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,circuit,,,{},0,,,"[{'circuit': 'circuit', 'row': 469, 'column_start': 10, 'column_end': 84}]",1,,NC

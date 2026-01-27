@@ -1,0 +1,2 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,repetitions,row,rows,suggestion,type
+,qc,,,,"[{'operation_name': 'reset', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 275, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.reset(1)'}, {'operation_name': 'swap', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 276, 'column_start': 8, 'column_end': 21, 'source_line': 'qc.swap(0, 1)'}]",1,,"[275, 276]",,ROC

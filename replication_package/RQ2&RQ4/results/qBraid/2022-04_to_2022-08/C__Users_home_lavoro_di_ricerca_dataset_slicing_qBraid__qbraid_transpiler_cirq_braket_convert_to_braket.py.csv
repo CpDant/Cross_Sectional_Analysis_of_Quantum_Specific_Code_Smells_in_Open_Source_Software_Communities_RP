@@ -1,0 +1,4 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,protocols,44,22,,,,92,,CG
+,protocols,37,14,,,,192,,CG
+,protocols,51,29,,,,255,,CG

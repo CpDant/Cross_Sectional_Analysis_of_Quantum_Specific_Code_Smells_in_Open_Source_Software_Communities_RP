@@ -1,0 +1,6 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,program,49,19,,61,,LPQ
+,program,53,27,,124,,LPQ
+,program,55,27,,126,,LPQ
+,program,55,27,,128,,LPQ
+,program,46,19,,139,,LPQ

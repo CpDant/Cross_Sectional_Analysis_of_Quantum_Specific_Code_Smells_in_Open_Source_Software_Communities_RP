@@ -1,0 +1,6 @@
+backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
+,,qc,,,,,,,,,0,,,,,IM
+,,qc,,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 268, 'column_start': 12, 'column_end': 19, 'source_line': 'qc.x(0)'}]",,,1,,[268],,ROC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,11,4.527651663355055e-08,,43,,,,,,LC
+,,qc,,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 268, 'column_start': 12, 'column_end': 19, 'source_line': 'qc.x(0)'}]",,,2,,[268],,ROC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,12,3.3752945861856386e-05,,24,,,,,,LC

@@ -1,0 +1,4 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,braket_circuit3,60,5,,,,150,,CG
+,,47,26,,,,742,,CG
+,,65,49,,,,742,,CG

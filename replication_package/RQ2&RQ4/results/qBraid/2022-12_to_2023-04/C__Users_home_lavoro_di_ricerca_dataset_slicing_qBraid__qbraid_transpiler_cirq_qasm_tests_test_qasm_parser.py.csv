@@ -1,0 +1,9 @@
+circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
+,cirq,24,9,,,,394,,CG
+,cirq,46,26,,,,394,,CG
+,cirq,42,9,,,,467,,CG
+,cirq,74,44,,,,467,,CG
+,,49,20,,,,761,,CG
+,expected_circuit,50,24,,,,762,,CG
+,,49,20,,,,824,,CG
+,expected_circuit,50,24,,,,825,,CG

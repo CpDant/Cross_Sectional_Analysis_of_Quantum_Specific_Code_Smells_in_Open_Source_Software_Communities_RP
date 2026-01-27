@@ -1,0 +1,13 @@
+assign_parameter_calls,assign_parameters_count,backend,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,error,execute_calls,execute_count,explanation,lenght_op,likelihood,operation_distance,operation_name,parallel_op,qubit,row,run_calls,run_count,suggestion,type
+,,,,,,c,,,,,,,,,,,,0,,,,,IM
+,,,,,,c,,,,,,,,,6,measure_x,,2,,,,,IdQ
+,,,,,,c,,,,,,,,,4,delay,,3000,178,,,,IdQ
+,,,,,,c,,,,,,,,,6,measure_x,,2,,,,,IQ
+,,,,,,c,,,,,,,,,4,delay,,3000,178,,,,IQ
+,,Custom Backend,,,c,c,,,{'CustomGate': 0.03512},,,,15,0.06846960683358116,,,5,,,,,,LC
+,,Custom Backend,,,c,c,,,{'CustomGate': 0.03512},,,,10,0.16736522384704666,,,5,,,,,,LC
+{},0,,{},0,,c,,,,{},0,,,,,,,,,"[{'circuit': 'c', 'row': 157, 'column_start': 10, 'column_end': 24}]",1,,NC
+{},0,,{},0,,c,,,,{},0,,,,,,,,,"[{'circuit': 'c', 'row': 130, 'column_start': 10, 'column_end': 24}]",1,,NC
+{},0,,{},0,,c,,,,{},0,,,,,,,,,"[{'circuit': 'c', 'row': 145, 'column_start': 10, 'column_end': 24}]",1,,NC
+,,,,,,c,30,9,,,,,,,,,,,93,,,,LPQ
+,,,,,,c,39,18,,,,,,,,,,,205,,,,LPQ

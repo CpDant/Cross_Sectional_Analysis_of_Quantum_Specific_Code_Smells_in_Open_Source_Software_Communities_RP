@@ -1,0 +1,4 @@
+circuit,circuit_name,column_end,column_start,explanation,row,suggestion,type
+,circuit,74,30,,113,,LPQ
+,right_circuit,25,32,,177,,LPQ
+,inverted_left_circuit,25,40,,291,,LPQ

@@ -1,0 +1,6 @@
+circuit,circuit_name,column_end,column_start,explanation,operations,qubit,repetitions,row,rows,suggestion,type
+,qc1,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 340, 'column_start': 8, 'column_end': 25, 'source_line': 'qc1.measure_all()'}]",,1,,[340],,ROC
+,qc2,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 369, 'column_start': 8, 'column_end': 26, 'source_line': 'pqc2.measure_all()'}]",,2,,[369],,ROC
+,qc2,,,,"[{'operation_name': 'measure_all', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 369, 'column_start': 8, 'column_end': 26, 'source_line': 'pqc2.measure_all()'}]",,1,,[369],,ROC
+,circ,,,,"[{'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 395, 'column_start': 8, 'column_end': 26, 'source_line': 'circ.measure(0, 0)'}]",,1,,[395],,ROC
+,circ,,,,,0,,,,,IM

@@ -1,0 +1,3 @@
+assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,row,run_calls,run_count,suggestion,type
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 428, 'column_start': 12, 'column_end': 26}]",1,,NC
+{},0,{},0,,dag,,,{},0,,,"[{'circuit': 'dag', 'row': 429, 'column_start': 12, 'column_end': 26}]",1,,NC
