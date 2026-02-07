@@ -1,5 +1,5 @@
 circuit,circuit_name,column_end,column_start,explanation,operation_distance,operation_name,operations,qubit,repetitions,row,rows,suggestion,type
-,quantum_circuit,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 210, 'column_start': 8, 'column_end': 28, 'source_line': 'quantum_circuit.x(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 211, 'column_start': 8, 'column_end': 32, 'source_line': 'quantum_circuit.cx(0, 1)'}]",,3,,"[210, 211]",,ROC
-,quantum_circuit,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 290, 'column_start': 8, 'column_end': 28, 'source_line': 'quantum_circuit.x(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 291, 'column_start': 8, 'column_end': 32, 'source_line': 'quantum_circuit.cx(0, 1)'}]",,1,,"[290, 291]",,ROC
-,quantum_circuit,,,,3,ccx,,2,,,,,IdQ
-,quantum_circuit,,,,3,ccx,,2,,,,,IQ
+,quantum_circuit,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 210, 'column_start': 8, 'column_end': 28, 'source_line': 'quantum_circuit.x(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 211, 'column_start': 8, 'column_end': 32, 'source_line': 'quantum_circuit.cx(0, 1)'}]",,3.0,,"[210, 211]",,ROC
+,quantum_circuit,,,,,,"[{'operation_name': 'x', 'qubits_affected': [0], 'clbits_affected': [], 'row': 290, 'column_start': 8, 'column_end': 28, 'source_line': 'quantum_circuit.x(0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 291, 'column_start': 8, 'column_end': 32, 'source_line': 'quantum_circuit.cx(0, 1)'}]",,1.0,,"[290, 291]",,ROC
+,quantum_circuit,,,,3.0,ccx,,2.0,,,,,IQ
+,quantum_circuit,,,,3.0,ccx,,2.0,,,,,IdQ

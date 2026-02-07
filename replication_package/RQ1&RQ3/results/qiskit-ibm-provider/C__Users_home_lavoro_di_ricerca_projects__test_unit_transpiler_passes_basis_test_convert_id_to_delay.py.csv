@@ -1,11 +1,11 @@
 assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,operation_distance,operation_name,operations,qubit,repetitions,row,rows,run_calls,run_count,suggestion,type
-,,,,,expected,,,,,,3,delay,,200,,,,,,,IdQ
-,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 223, 'column_start': 8, 'column_end': 16, 'source_line': 'qc.id(0)'}, {'operation_name': 'if_test', 'qubits_affected': [1], 'clbits_affected': [], 'row': 250, 'column_start': 8, 'column_end': 30, 'source_line': 'with qc.if_test((0, 1)):', 'params': ['(0']}]",,1,,"[223, 250]",,,,ROC
-,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 251, 'column_start': 12, 'column_end': 20, 'source_line': 'qc.id(0)'}]",,3,,[251],,,,ROC
-,,,,,expected,,,,,,,,"[{'operation_name': 'delay', 'qubits_affected': [160, 0], 'clbits_affected': [], 'row': 258, 'column_start': 12, 'column_end': 34, 'source_line': 'expected.delay(160, 0)'}]",,2,,[258],,,,ROC
-,,,,,expected,,,,,,3,delay,,200,,,,,,,IQ
-{},0,{},0,,qc,,,{},0,,,,,,,,,"[{'circuit': 'qc', 'row': 302, 'column_start': 18, 'column_end': 28}]",1,,NC
-,,,,,expected,,,,,,,,"[{'operation_name': 'delay', 'qubits_affected': [160, 0], 'clbits_affected': [], 'row': 258, 'column_start': 12, 'column_end': 34, 'source_line': 'expected.delay(160, 0)'}]",,3,,[258],,,,ROC
-,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 251, 'column_start': 12, 'column_end': 20, 'source_line': 'qc.id(0)'}]",,2,,[251],,,,ROC
-{},0,{},0,,qc,,,{},0,,,,,,,,,"[{'circuit': 'qc', 'row': 75, 'column_start': 18, 'column_end': 28}]",1,,NC
-{},0,{},0,,qc,,,{},0,,,,,,,,,"[{'circuit': 'qc', 'row': 92, 'column_start': 18, 'column_end': 28}]",1,,NC
+,,,,,expected,,,,,,3.0,delay,,200.0,,,,,,,IQ
+,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 223, 'column_start': 8, 'column_end': 16, 'source_line': 'qc.id(0)'}, {'operation_name': 'if_test', 'qubits_affected': [1], 'clbits_affected': [], 'row': 250, 'column_start': 8, 'column_end': 30, 'source_line': 'with qc.if_test((0, 1)):', 'params': ['(0']}]",,1.0,,"[223, 250]",,,,ROC
+,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 251, 'column_start': 12, 'column_end': 20, 'source_line': 'qc.id(0)'}]",,3.0,,[251],,,,ROC
+,,,,,expected,,,,,,,,"[{'operation_name': 'delay', 'qubits_affected': [160, 0], 'clbits_affected': [], 'row': 258, 'column_start': 12, 'column_end': 34, 'source_line': 'expected.delay(160, 0)'}]",,2.0,,[258],,,,ROC
+,,,,,expected,,,,,,3.0,delay,,200.0,,,,,,,IdQ
+{},0.0,{},0.0,,qc,,,{},0.0,,,,,,,,,"[{'circuit': 'qc', 'row': 302, 'column_start': 18, 'column_end': 28}]",1.0,,NC
+,,,,,expected,,,,,,,,"[{'operation_name': 'delay', 'qubits_affected': [160, 0], 'clbits_affected': [], 'row': 258, 'column_start': 12, 'column_end': 34, 'source_line': 'expected.delay(160, 0)'}]",,3.0,,[258],,,,ROC
+,,,,,qc,,,,,,,,"[{'operation_name': 'id', 'qubits_affected': [0], 'clbits_affected': [], 'row': 251, 'column_start': 12, 'column_end': 20, 'source_line': 'qc.id(0)'}]",,2.0,,[251],,,,ROC
+{},0.0,{},0.0,,qc,,,{},0.0,,,,,,,,,"[{'circuit': 'qc', 'row': 75, 'column_start': 18, 'column_end': 28}]",1.0,,NC
+{},0.0,{},0.0,,qc,,,{},0.0,,,,,,,,,"[{'circuit': 'qc', 'row': 92, 'column_start': 18, 'column_end': 28}]",1.0,,NC

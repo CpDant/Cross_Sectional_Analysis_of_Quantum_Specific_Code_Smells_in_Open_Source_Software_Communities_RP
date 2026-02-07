@@ -1,11 +1,11 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
-,,qc,,,,,,,3,cx,,,3,,,,,IdQ
-,,qc,,,,,,,6,cx,,,4,,,,,IdQ
-,,qc,,,,,,,7,cx,,,5,,,,,IdQ
-,,qc,,,,,,,8,cx,,,6,,,,,IdQ
-,,qc,,,,,,,3,cx,,,3,,,,,IQ
-,,qc,,,,,,,6,cx,,,4,,,,,IQ
-,,qc,,,,,,,7,cx,,,5,,,,,IQ
-,,qc,,,,,,,8,cx,,,6,,,,,IQ
-,,qc,,,,,,,,,"[{'operation_name': 'barrier', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 222, 'column_start': 4, 'column_end': 19, 'source_line': 'qc.barrier([1])'}]",,,1,,[222],,ROC
-Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,9,0.14506359649697,,,,6,,,,,,LC
+,,qc,,,,,,,3.0,cx,,,3.0,,,,,IQ
+,,qc,,,,,,,6.0,cx,,,4.0,,,,,IQ
+,,qc,,,,,,,7.0,cx,,,5.0,,,,,IQ
+,,qc,,,,,,,8.0,cx,,,6.0,,,,,IQ
+,,qc,,,,,,,3.0,cx,,,3.0,,,,,IdQ
+,,qc,,,,,,,6.0,cx,,,4.0,,,,,IdQ
+,,qc,,,,,,,7.0,cx,,,5.0,,,,,IdQ
+,,qc,,,,,,,8.0,cx,,,6.0,,,,,IdQ
+,,qc,,,,,,,,,"[{'operation_name': 'barrier', 'qubits_affected': [0, 1, 2], 'clbits_affected': [], 'row': 222, 'column_start': 4, 'column_end': 19, 'source_line': 'qc.barrier([1])'}]",,,1.0,,[222],,ROC
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,9.0,0.14506359649697,,,,6.0,,,,,,LC

@@ -1,3 +1,3 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,parallel_op,qubit,row,suggestion,type
-,,qc,,,,,,,4,cx,,1,,,IQ
-Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,13,0.015253749889894174,,,9,,,,LC
+,,qc,,,,,,,4.0,cx,,1.0,,,IdQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,13.0,0.0152537498898941,,,9.0,,,,LC

@@ -1,11 +1,11 @@
 assign_parameter_calls,assign_parameters_count,bind_parameter_calls,bind_parameters_count,circuit,circuit_name,column_end,column_start,execute_calls,execute_count,explanation,operation_distance,operation_name,operations,qubit,repetitions,row,rows,run_calls,run_count,suggestion,type
-,,,,,circuit,,,,,,,,,0,,,,,,,IM
-,,,,,circuit,,,,,,4,cx,,1,,,,,,,IdQ
-,,,,,circuit,,,,,,4,cx,,1,,,,,,,IQ
-{},0,{},0,,circuit,,,{},0,,,,,,,,,"[{'circuit': 'circuit', 'row': 148, 'column_start': 4, 'column_end': 48}]",1,,NC
-,,,,,circuit,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 470, 'column_start': 8, 'column_end': 20, 'source_line': 'circuit.h(0)'}, {'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 471, 'column_start': 8, 'column_end': 29, 'source_line': 'circuit.measure(0, 0)'}]",,1,,"[470, 471]",,,,ROC
-{},0,{},0,,circuit,,,{},0,,,,,,,,,"[{'circuit': 'circuit', 'row': 134, 'column_start': 13, 'column_end': 42}]",1,,NC
-{},0,{},0,,circuit,,,{},0,,,,,,,,,"[{'circuit': 'circuit', 'row': 117, 'column_start': 23, 'column_end': 43}, {'circuit': 'circuit', 'row': 117, 'column_start': 23, 'column_end': 43}]",2,,NC
-{},0,{},0,,circuit,,,{},0,,,,,,,,,"[{'circuit': 'circuit', 'row': 157, 'column_start': 8, 'column_end': 52}]",1,,NC
-,,,,,circuit,18,42,,,,,,,,,196,,,,,LPQ
-,,,,,,14,13,,,,,,,,,231,,,,,LPQ
+,,,,,circuit,,,,,,,,,0.0,,,,,,,IM
+,,,,,circuit,,,,,,4.0,cx,,1.0,,,,,,,IQ
+,,,,,circuit,,,,,,4.0,cx,,1.0,,,,,,,IdQ
+{},0.0,{},0.0,,circuit,,,{},0.0,,,,,,,,,"[{'circuit': 'circuit', 'row': 148, 'column_start': 4, 'column_end': 48}]",1.0,,NC
+,,,,,circuit,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 470, 'column_start': 8, 'column_end': 20, 'source_line': 'circuit.h(0)'}, {'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [0], 'row': 471, 'column_start': 8, 'column_end': 29, 'source_line': 'circuit.measure(0, 0)'}]",,1.0,,"[470, 471]",,,,ROC
+{},0.0,{},0.0,,circuit,,,{},0.0,,,,,,,,,"[{'circuit': 'circuit', 'row': 134, 'column_start': 13, 'column_end': 42}]",1.0,,NC
+{},0.0,{},0.0,,circuit,,,{},0.0,,,,,,,,,"[{'circuit': 'circuit', 'row': 117, 'column_start': 23, 'column_end': 43}, {'circuit': 'circuit', 'row': 117, 'column_start': 23, 'column_end': 43}]",2.0,,NC
+{},0.0,{},0.0,,circuit,,,{},0.0,,,,,,,,,"[{'circuit': 'circuit', 'row': 157, 'column_start': 8, 'column_end': 52}]",1.0,,NC
+,,,,,circuit,18.0,42.0,,,,,,,,,196.0,,,,,LPQ
+,,,,,,14.0,13.0,,,,,,,,,231.0,,,,,LPQ

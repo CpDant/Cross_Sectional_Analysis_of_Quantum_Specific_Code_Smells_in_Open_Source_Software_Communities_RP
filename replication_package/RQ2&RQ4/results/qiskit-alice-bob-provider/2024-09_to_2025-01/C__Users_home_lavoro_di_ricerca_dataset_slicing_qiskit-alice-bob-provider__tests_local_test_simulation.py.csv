@@ -1,17 +1,17 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,parallel_op,qubit,row,suggestion,type
-,,circ,,,,,,,,,,0,,,IM
-,,circ,,,,,,,,,,0,132,,IM
-,,circ,,,,,,,,,,1,,,IM
-,,circ,,,,,,,,,,1,133,,IM
-,,circ,,,,,,,4,cx,,1,,,IQ
-Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,31,1.989569017591369e-08,,,16,,,,LC
-,,circ,71,47,,,,,,,,,61,,LPQ
-,,,43,9,,,,,,,,,84,,LPQ
-,,circ,33,9,,,,,,,,,97,,LPQ
-,,circ,37,17,,,,,,,,,150,,LPQ
-,,circ,55,31,,,,,,,,,153,,LPQ
-,,circ,66,23,,,,,,,,,182,,LPQ
-,,circ,33,9,,,,,,,,,209,,LPQ
-,,circ,33,9,,,,,,,,,258,,LPQ
-,,circ,47,23,,,,,,,,,266,,LPQ
-,,circ,41,17,,,,,,,,,279,,LPQ
+,,circ,,,,,,,,,,0.0,,,IM
+,,circ,,,,,,,,,,0.0,132.0,,IM
+,,circ,,,,,,,,,,1.0,,,IM
+,,circ,,,,,,,,,,1.0,133.0,,IM
+,,circ,,,,,,,4.0,cx,,1.0,,,IdQ
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,31.0,1.989569017591369e-08,,,16.0,,,,LC
+,,circ,71.0,47.0,,,,,,,,,61.0,,LPQ
+,,,43.0,9.0,,,,,,,,,84.0,,LPQ
+,,circ,33.0,9.0,,,,,,,,,97.0,,LPQ
+,,circ,37.0,17.0,,,,,,,,,150.0,,LPQ
+,,circ,55.0,31.0,,,,,,,,,153.0,,LPQ
+,,circ,66.0,23.0,,,,,,,,,182.0,,LPQ
+,,circ,33.0,9.0,,,,,,,,,209.0,,LPQ
+,,circ,33.0,9.0,,,,,,,,,258.0,,LPQ
+,,circ,47.0,23.0,,,,,,,,,266.0,,LPQ
+,,circ,41.0,17.0,,,,,,,,,279.0,,LPQ

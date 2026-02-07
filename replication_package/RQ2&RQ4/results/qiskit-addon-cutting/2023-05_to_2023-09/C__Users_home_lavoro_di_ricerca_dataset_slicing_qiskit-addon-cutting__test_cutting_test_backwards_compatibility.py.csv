@@ -1,19 +1,19 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
-,,qc_0,,,,,,,5,cx,,,0,,,,,IQ
-,,qc_0,,,,,,,5,cx,,,0,,273,,,IQ
-,,qc_0,,,,,,,5,cx,,,1,,,,,IQ
-,,qc_0,,,,,,,5,cx,,,1,,274,,,IQ
-,,qc_0,,,,,,,5,cx,,,2,,,,,IQ
-,,qc_0,,,,,,,5,cx,,,2,,275,,,IQ
-,,qc_0,,,,,,,3,cx,,,4,,,,,IQ
-,,qc_0,,,,,,,8,cx,,,4,,270,,,IQ
-,,qc_0,,,,,,,4,cx,,,5,,,,,IQ
-,,qc_0,,,,,,,8,cx,,,5,,271,,,IQ
-,,qc_0,,,,,,,5,cx,,,6,,,,,IQ
-,,qc_0,,,,,,,8,cx,,,6,,272,,,IQ
-,,qc_1,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 3], 'clbits_affected': [], 'row': 502, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(0, 3)'}, {'operation_name': 'cx', 'qubits_affected': [1, 3], 'clbits_affected': [], 'row': 503, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(1, 3)'}, {'operation_name': 'cx', 'qubits_affected': [2, 3], 'clbits_affected': [], 'row': 504, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(2, 3)'}]",,,1,,"[502, 503, 504]",,ROC
-,,qc_0,,,,,,,3,cx,,,4,,,,,IdQ
-,,qc_0,,,,,,,4,cx,,,5,,,,,IdQ
-,,qc_0,,,,,,,5,cx,,,6,,,,,IdQ
-Custom Backend,qc_0,qc_0,,,{'CustomGate': 0.03512},,20,0.006702898199666848,,,,7,,,,,,LC
-Custom Backend,qc_1,qc_1,,,{'CustomGate': 0.03512},,12,0.03231746057008249,,,,8,,,,,,LC
+,,qc_0,,,,,,,5.0,cx,,,0.0,,,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,0.0,,273.0,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,1.0,,,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,1.0,,274.0,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,2.0,,,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,2.0,,275.0,,,IdQ
+,,qc_0,,,,,,,3.0,cx,,,4.0,,,,,IdQ
+,,qc_0,,,,,,,8.0,cx,,,4.0,,270.0,,,IdQ
+,,qc_0,,,,,,,4.0,cx,,,5.0,,,,,IdQ
+,,qc_0,,,,,,,8.0,cx,,,5.0,,271.0,,,IdQ
+,,qc_0,,,,,,,5.0,cx,,,6.0,,,,,IdQ
+,,qc_0,,,,,,,8.0,cx,,,6.0,,272.0,,,IdQ
+,,qc_1,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 3], 'clbits_affected': [], 'row': 502, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(0, 3)'}, {'operation_name': 'cx', 'qubits_affected': [1, 3], 'clbits_affected': [], 'row': 503, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(1, 3)'}, {'operation_name': 'cx', 'qubits_affected': [2, 3], 'clbits_affected': [], 'row': 504, 'column_start': 4, 'column_end': 17, 'source_line': 'qc_1.cx(2, 3)'}]",,,1.0,,"[502, 503, 504]",,ROC
+,,qc_0,,,,,,,3.0,cx,,,4.0,,,,,IQ
+,,qc_0,,,,,,,4.0,cx,,,5.0,,,,,IQ
+,,qc_0,,,,,,,5.0,cx,,,6.0,,,,,IQ
+Custom Backend,qc_0,qc_0,,,{'CustomGate': 0.03512},,20.0,0.0067028981996668,,,,7.0,,,,,,LC
+Custom Backend,qc_1,qc_1,,,{'CustomGate': 0.03512},,12.0,0.0323174605700824,,,,8.0,,,,,,LC

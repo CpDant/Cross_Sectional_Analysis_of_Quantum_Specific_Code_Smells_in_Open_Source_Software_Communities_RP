@@ -1,9 +1,9 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
-,,qc,,,,,,,,,,,0,,,,,IM
-,,qc,,,,,,,,,,,1,,,,,IM
-,,qc,,,,,,,5,cx,,,1,,,,,IdQ
-,,qc,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 215, 'column_start': 12, 'column_end': 19, 'source_line': 'qc.h(0)'}]",,,1,,[215],,ROC
-,,qc,,,,,,,5,cx,,,1,,,,,IQ
-,,qc,,,,,,,6,reset,,,1,,,,,IQ
-,,qc,,,,,,,3,cx,,,1,,,,,IQ
-Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,32,0.010293971704266644,,,,4,,,,,,LC
+,,qc,,,,,,,,,,,0.0,,,,,IM
+,,qc,,,,,,,,,,,1.0,,,,,IM
+,,qc,,,,,,,5.0,cx,,,1.0,,,,,IQ
+,,qc,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 215, 'column_start': 12, 'column_end': 19, 'source_line': 'qc.h(0)'}]",,,1.0,,[215],,ROC
+,,qc,,,,,,,5.0,cx,,,1.0,,,,,IdQ
+,,qc,,,,,,,6.0,reset,,,1.0,,,,,IdQ
+,,qc,,,,,,,3.0,cx,,,1.0,,,,,IdQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,32.0,0.0102939717042666,,,,4.0,,,,,,LC

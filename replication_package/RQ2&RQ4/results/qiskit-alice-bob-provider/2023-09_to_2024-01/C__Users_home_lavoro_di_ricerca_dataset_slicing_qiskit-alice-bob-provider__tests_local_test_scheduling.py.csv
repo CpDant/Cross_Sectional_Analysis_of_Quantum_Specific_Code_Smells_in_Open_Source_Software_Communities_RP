@@ -1,6 +1,6 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,parallel_op,qubit,row,suggestion,type
-,,circ,,,,,,,,,,0,,,IM
-,,circ,,,,,,,13,rz,,11,,,IQ
-Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,31,0.00014105208320302714,,,8,,,,LC
-,,circ,42,18,,,,,,,,,77,,LPQ
-,,circ,42,18,,,,,,,,,99,,LPQ
+,,circ,,,,,,,,,,0.0,,,IM
+,,circ,,,,,,,13.0,rz,,11.0,,,IdQ
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,31.0,0.000141052083203,,,8.0,,,,LC
+,,circ,42.0,18.0,,,,,,,,,77.0,,LPQ
+,,circ,42.0,18.0,,,,,,,,,99.0,,LPQ

@@ -1,19 +1,19 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
-,,circ,,,,,,,,,"[{'operation_name': 'reset', 'qubits_affected': [0], 'clbits_affected': [], 'row': 289, 'column_start': 4, 'column_end': 17, 'source_line': 'circ.reset(0)'}]",,,1,,[289],,ROC
-Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,10,0.23929420321480233,,,,4,,,,,,LC
-,,circ,,,,,,,3,reset,,,1,,,,,IQ
-,,circ,,,,,,,5,reset,,,2,,,,,IQ
-Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,13,0.15581592120118226,,,,4,,,,,,LC
-Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,12,0.11705723656092025,,,,5,,,,,,LC
-,,circ,42,18,,,,,,,,,,,47,,,LPQ
-,,circ,42,18,,,,,,,,,,,57,,,LPQ
-,,circ,42,18,,,,,,,,,,,64,,,LPQ
-,,circ,42,18,,,,,,,,,,,77,,,LPQ
-,,circ,42,18,,,,,,,,,,,83,,,LPQ
-,,circ,42,18,,,,,,,,,,,89,,,LPQ
-,,circ,61,18,,,,,,,,,,,99,,,LPQ
-,,circ,42,18,,,,,,,,,,,109,,,LPQ
-,,circ,42,18,,,,,,,,,,,120,,,LPQ
-,,circ,49,17,,,,,,,,,,,187,,,LPQ
-,,circ,42,18,,,,,,,,,,,199,,,LPQ
-,,circ,42,18,,,,,,,,,,,209,,,LPQ
+,,circ,,,,,,,,,"[{'operation_name': 'reset', 'qubits_affected': [0], 'clbits_affected': [], 'row': 289, 'column_start': 4, 'column_end': 17, 'source_line': 'circ.reset(0)'}]",,,1.0,,[289],,ROC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,10.0,0.2392942032148023,,,,4.0,,,,,,LC
+,,circ,,,,,,,3.0,reset,,,1.0,,,,,IdQ
+,,circ,,,,,,,5.0,reset,,,2.0,,,,,IdQ
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,13.0,0.1558159212011822,,,,4.0,,,,,,LC
+Custom Backend,circ,circ,,,{'CustomGate': 0.03512},,12.0,0.1170572365609202,,,,5.0,,,,,,LC
+,,circ,42.0,18.0,,,,,,,,,,,47.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,57.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,64.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,77.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,83.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,89.0,,,LPQ
+,,circ,61.0,18.0,,,,,,,,,,,99.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,109.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,120.0,,,LPQ
+,,circ,49.0,17.0,,,,,,,,,,,187.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,199.0,,,LPQ
+,,circ,42.0,18.0,,,,,,,,,,,209.0,,,LPQ

@@ -1,9 +1,9 @@
 backend,circuit,circuit_name,column_end,column_start,error,explanation,lenght_op,likelihood,operation_distance,operation_name,operations,parallel_op,qubit,repetitions,row,rows,suggestion,type
-,,qc,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 699, 'column_start': 8, 'column_end': 15, 'source_line': 'qc.h(0)'}]",,,1,,[699],,ROC
-,,qc,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 738, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.cx(0, 1)'}]",,,1,,[738],,ROC
-,,qc,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [1, 0], 'clbits_affected': [], 'row': 745, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.cx(1, 0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 750, 'column_start': 4, 'column_end': 15, 'source_line': 'qc.cx(0, 1)'}]",,,1,,"[745, 750]",,ROC
-,,qc,,,,,,,6,cx,,,1,,,,,IQ
-Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,18,0.14506359649697,,,,3,,,,,,LC
-,,circuit,10,16,,,,,,,,,,,173,,,LPQ
-,,circuit,14,20,,,,,,,,,,,183,,,LPQ
-,,qc,14,20,,,,,,,,,,,393,,,LPQ
+,,qc,,,,,,,,,"[{'operation_name': 'h', 'qubits_affected': [0], 'clbits_affected': [], 'row': 699, 'column_start': 8, 'column_end': 15, 'source_line': 'qc.h(0)'}]",,,1.0,,[699],,ROC
+,,qc,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 738, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.cx(0, 1)'}]",,,1.0,,[738],,ROC
+,,qc,,,,,,,,,"[{'operation_name': 'cx', 'qubits_affected': [1, 0], 'clbits_affected': [], 'row': 745, 'column_start': 8, 'column_end': 19, 'source_line': 'qc.cx(1, 0)'}, {'operation_name': 'cx', 'qubits_affected': [0, 1], 'clbits_affected': [], 'row': 750, 'column_start': 4, 'column_end': 15, 'source_line': 'qc.cx(0, 1)'}]",,,1.0,,"[745, 750]",,ROC
+,,qc,,,,,,,6.0,cx,,,1.0,,,,,IdQ
+Custom Backend,qc,qc,,,{'CustomGate': 0.03512},,18.0,0.14506359649697,,,,3.0,,,,,,LC
+,,circuit,10.0,16.0,,,,,,,,,,,173.0,,,LPQ
+,,circuit,14.0,20.0,,,,,,,,,,,183.0,,,LPQ
+,,qc,14.0,20.0,,,,,,,,,,,393.0,,,LPQ

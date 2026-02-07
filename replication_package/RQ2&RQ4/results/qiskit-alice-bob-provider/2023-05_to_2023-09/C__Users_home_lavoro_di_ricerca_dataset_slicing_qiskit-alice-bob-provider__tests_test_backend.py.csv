@@ -1,5 +1,5 @@
 circuit,circuit_name,column_end,column_start,explanation,operation_distance,operation_name,operations,qubit,repetitions,row,rows,suggestion,type
-,c,,,,3,delay,,3000,,,,,IdQ
-,c,,,,,,,0,,,,,IM
-,c,,,,,,"[{'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [1], 'row': 299, 'column_start': 4, 'column_end': 19, 'source_line': 'c.measure(0, 1)'}, {'operation_name': 'initialize', 'qubits_affected': [0], 'clbits_affected': [], 'row': 355, 'column_start': 4, 'column_end': 24, 'source_line': ""c.initialize('+', 0)"", 'params': [""'+'""]}, {'operation_name': 'measure_x', 'qubits_affected': [0, 0], 'clbits_affected': [], 'row': 356, 'column_start': 4, 'column_end': 21, 'source_line': 'c.measure_x(0, 0)'}, {'operation_name': 'delay', 'qubits_affected': [3000, 0], 'clbits_affected': [], 'row': 357, 'column_start': 4, 'column_end': 31, 'source_line': ""c.delay(3000, 0, unit='ns')"", 'params': [""unit='ns'""]}]",,1,,"[299, 355, 356, 357]",,ROC
-,c,,,,3,delay,,3000,,,,,IQ
+,c,,,,3.0,delay,,3000.0,,,,,IQ
+,c,,,,,,,0.0,,,,,IM
+,c,,,,,,"[{'operation_name': 'measure', 'qubits_affected': [0], 'clbits_affected': [1], 'row': 299, 'column_start': 4, 'column_end': 19, 'source_line': 'c.measure(0, 1)'}, {'operation_name': 'initialize', 'qubits_affected': [0], 'clbits_affected': [], 'row': 355, 'column_start': 4, 'column_end': 24, 'source_line': ""c.initialize('+', 0)"", 'params': [""'+'""]}, {'operation_name': 'measure_x', 'qubits_affected': [0, 0], 'clbits_affected': [], 'row': 356, 'column_start': 4, 'column_end': 21, 'source_line': 'c.measure_x(0, 0)'}, {'operation_name': 'delay', 'qubits_affected': [3000, 0], 'clbits_affected': [], 'row': 357, 'column_start': 4, 'column_end': 31, 'source_line': ""c.delay(3000, 0, unit='ns')"", 'params': [""unit='ns'""]}]",,1.0,,"[299, 355, 356, 357]",,ROC
+,c,,,,3.0,delay,,3000.0,,,,,IdQ
