@@ -1,2 +1,0 @@
-circuit,circuit_name,column_end,column_start,explanation,matrix,qubits,row,suggestion,type
-,qc,36,12,,<Call to HamiltonianGate>,,108,,CG
