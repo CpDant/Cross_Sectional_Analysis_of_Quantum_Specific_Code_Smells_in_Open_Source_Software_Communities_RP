@@ -23,7 +23,7 @@ To replicate the study, you will need:
 
 ## RQ1 & RQ3
 To answer RQ1 and RQ3, follow the steps listed below:
-1. Clone and install the repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire) (follow the steps in this repo for the installation)
+1. Download and install from the package QSmell and follow the instructions on README to install it.
 2. Clone the projects in the file _dataset_quantum-enabled_projects_RQ1&RQ3.xlsx_
 3. Run qspire using the following command
 ```{r}
@@ -43,21 +43,20 @@ Finally, PDF files will be available that graphically illustrate the results for
 ## RQ2 & RQ4
 The operational process for obtaining answers to RQ2 and RQ4 is very similar to the one seen previously, with the main difference being the creation and use of time slices.
 The steps to be performed are listed below:
-1. Clone and install the repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire) (follow the steps in this repo for the installation)
-2. Clone the projects in the file _dataset_quantum-enabled_projects_RQ2&RQ4.xlsx_
-3. Use the makeSlice.py script (create a GitHub token to avoid problems!!!) to divide the projects into different time slices, as follows:
+1. Clone the projects in the file _dataset_quantum-enabled_projects_RQ2&RQ4.xlsx_
+2. Use the makeSlice.py script (create a GitHub token to avoid problems!!!) to divide the projects into different time slices, as follows:
 ```{r}
 python -m makeSlice.py "repo_url" --token "personal_github_token"
 ```
-4. Run qspire on each time slice using the following command:
+3. Run qspire on each time slice using the following command:
 ```{r}
 qspire -static "path_folder_project_sliced" "path_folder_results_sliced"
 ```
-5. Run the _counter.py_ script, located in the scripts folder, as follows:
+4. Run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
 python -m counter.py --dataset ..\results\dataset_quantum_code_smells_sliced.xlsx
 ```
-6. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
+5. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
 python -m correlationSlicedDetection.py
 ```
