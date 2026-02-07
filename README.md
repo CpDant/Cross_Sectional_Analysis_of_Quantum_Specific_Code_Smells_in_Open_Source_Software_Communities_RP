@@ -29,11 +29,11 @@ To answer RQ1 and RQ3, follow the steps listed below:
 ```{r}
 qspire -static "path_folder_project" "path_folder_results"
 ```
-4. In the folder where the tool output is saved (i.e., the one used in path_folder_results), run the _counter.py_ script, located in the scripts folder, as follows:
+4. Run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
-python -m counter.py "path_folder_results" "path_folder_output_counter"
+python -m counter.py --dataset ..\results\dataset_quantum_code_smells.xlsx
 ```
-5. Save all results in an Excel file named _dataset_quantum_code_smells.xlsx_ and run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
+5. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
 python -m correlationDetection.py
 ```
@@ -53,11 +53,11 @@ python -m makeSlice.py "repo_url" --token "personal_github_token"
 ```{r}
 qspire -static "path_folder_project_sliced" "path_folder_results_sliced"
 ```
-5. In the folder where the tool output is saved (i.e., the one used in path_folder_results_sliced), run the _counter.py_ script, located in the scripts folder, as follows:
+5. Run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
-python -m counter.py "path_folder_results_sliced" "path_folder_output_counter"
+python -m counter.py --dataset ..\results\dataset_quantum_code_smells_sliced.xlsx
 ```
-6. Save all results in an Excel file named _dataset_quantum_code_smells_sliced.xlsx_ and run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
+6. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
 python -m correlationSlicedDetection.py
 ```
@@ -66,4 +66,5 @@ Finally, PDF files will be available that graphically illustrate the results for
 ## Known Issues
 1. If you have problems with opnepyxl installation, you should try to restart your PC. If it doesn't work I suggest using a Python virtual environment;
 2. You have to use the absolute path for the execution of the scripts;
+3. Make sure to invert the column names in _dataset_quantum_code_smells.xlsx_ and_dataset_quantum_code_smells_sliced.xlsx_ (Bug in detection resolved in a new version of QSmell, but here I used an older version)
 
