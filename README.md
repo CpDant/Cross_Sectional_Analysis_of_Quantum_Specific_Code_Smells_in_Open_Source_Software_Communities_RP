@@ -23,11 +23,11 @@ To replicate the study, you will need:
 
 ## RQ1 & RQ3
 To answer RQ1 and RQ3, follow the steps listed below:
-1. Clone the repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire)
+1. Clone and install the repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire) (follow the steps in this repo for the installation)
 2. Clone the projects in the file _dataset_quantum-enabled_projects_RQ1&RQ3.xlsx_
 3. Run qspire using the following command
 ```{r}
-qspire -static "path_folder_progetto" "path_folder_results"
+qspire -static "path_folder_project" "path_folder_results"
 ```
 4. In the folder where the tool output is saved (i.e., the one used in path_folder_results), run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
@@ -41,24 +41,29 @@ Finally, PDF files will be available that graphically illustrate the results for
 
 
 ## RQ2 & RQ4
-Il processo operativo per ottenere le risposte alla RQ2 e alla RQ4 è molto simile a quello visto in precedenza, la differenza sostanziale sta nella creazione e utilizzo delle slices temporali.
-Di seguito sono elencati gli step da eseguire:
-1. Effettuare il clone della repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire)
-2. Clonare i progetti presenti nel file _dataset_quantum-enabled_projects_RQ2&RQ4.xlsx_
-3. Utilizzare lo script makeSlice.py (creare un token GitHub per evitare problemi!!!), per dividere i progetti in slices temporali differenti, in questo modo:
+The operational process for obtaining answers to RQ2 and RQ4 is very similar to the one seen previously, with the main difference being the creation and use of time slices.
+The steps to be performed are listed below:
+1. Clone and install the repository [QSpire](https://github.com/Riccardoalfieri2003/Q-Spire) (follow the steps in this repo for the installation)
+2. Clone the projects in the file _dataset_quantum-enabled_projects_RQ2&RQ4.xlsx_
+3. Use the makeSlice.py script (create a GitHub token to avoid problems!!!) to divide the projects into different time slices, as follows:
 ```{r}
 python -m makeSlice.py "repo_url" --token "personal_github_token"
 ```
 4. Run qspire on each time slice using the following command:
 ```{r}
-qspire -static "path_folder_progetto_sliced" "path_folder_results_sliced"
+qspire -static "path_folder_project_sliced" "path_folder_results_sliced"
 ```
 5. In the folder where the tool output is saved (i.e., the one used in path_folder_results_sliced), run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
-python -m counter.py "path_folder_results" "path_folder_output_counter"
+python -m counter.py "path_folder_results_sliced" "path_folder_output_counter"
 ```
 6. Save all results in an Excel file named _dataset_quantum_code_smells_sliced.xlsx_ and run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
 python -m correlationSlicedDetection.py
 ```
-Alla fine si avranno a disposizione i file .pdf che illustrano graficamente i risultati relativi a RQ2 e RQ4.
+Finally, PDF files will be available that graphically illustrate the results for RQ2 and RQ4.
+
+## Known Issues
+1. If you have problems with opnepyxl installation, you should try to restart your PC. If it doesn't work I suggest using a Python virtual environment;
+2. You have to use the absolute path for the execution of the scripts;
+
