@@ -64,6 +64,5 @@ Finally, PDF files will be available that graphically illustrate the results for
 
 ## Known Issues
 1. If you have problems with opnepyxl installation, you should try to restart your PC. If it doesn't work I suggest using a Python virtual environment;
-2. You have to use the absolute path for the execution of the scripts;
-3. Make sure to invert the column names in _dataset_quantum_code_smells.xlsx_ and_dataset_quantum_code_smells_sliced.xlsx_ (Bug in detection resolved in a new version of QSmell, but here I used an older version)
+
 
