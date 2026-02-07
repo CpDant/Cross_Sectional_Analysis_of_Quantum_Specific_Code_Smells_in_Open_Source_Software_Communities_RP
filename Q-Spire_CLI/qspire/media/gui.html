@@ -1,0 +1,3472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QSpire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --primary-hover: #5855f3;
+            --secondary-color: #8b5cf6;
+            --background-color: #ffffff;
+            --surface-color: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 0.75rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --background-color: #0f172a;
+            --surface-color: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, var(--background-color) 0%, var(--surface-color) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 60rem;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: var(--text-primary);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            border-radius: 1px;
+            margin: 2rem 0;
+        }
+
+        /* Tab Navigation */
+        .tab-container {
+            background: var(--surface-color);
+            border-radius: var(--radius);
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tab-button {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: calc(var(--radius) - 0.25rem);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-button:not(.active):hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(0.5rem); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Content Card */
+        .main-card {
+            background: var(--surface-color);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] {
+            --surface-color: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            --border-color: #374151;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        /* Radio Button Group */
+        .detection-method {
+            margin-bottom: 2rem;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .radio-option {
+            position: relative;
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .radio-option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color)10, transparent);
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .radio-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* File Selection */
+        .file-selection {
+            margin-bottom: 2rem;
+        }
+
+        .file-input-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .file-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .file-display {
+            flex: 1;
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: calc(var(--radius) - 0.25rem);
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .file-browse-btn {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: calc(var(--radius) - 0.25rem);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .file-browse-btn:hover {
+            background: var(--border-color);
+            transform: translateY(-1px);
+        }
+
+        /* Hidden file input */
+        #file-input {
+            display: none;
+        }
+
+        /* Analyze Button */
+        .analyze-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Analysis Status Section */
+        .analysis-status {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .status-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            width: 2rem;
+            height: 2rem;
+            color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        .success-checkmark {
+            width: 2rem;
+            height: 2rem;
+            color: #10b981;
+        }
+
+        .success-checkmark svg {
+            animation: checkmark 0.6s ease-in-out;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .status-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Results Section Styling */
+        .results-header {
+            margin-bottom: 2rem;
+        }
+
+        .results-summary {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: calc(var(--radius) - 0.25rem);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+            gap: 1rem;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .summary-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Smells Container */
+        .smells-container {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .smell-card {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .smell-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .smell-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .smell-type {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .smell-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
+        .action-btn svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .smell-details {
+            display: grid;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .smell-detail {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 6rem;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        /* Severity indicators */
+        .severity-high { border-left: 4px solid #ef4444; }
+        .severity-medium { border-left: 4px solid #f59e0b; }
+        .severity-low { border-left: 4px solid #10b981; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .main-card {
+                padding: 1.5rem;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .file-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+
+
+
+        /* Smells Container */
+        .smells-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .smell-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: none;
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .smell-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .smell-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .smell-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Dark mode support */
+        [data-theme="dark"] .smell-card {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .smell-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .smell-info {
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .smell-type {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .smell-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .smell-detail {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-right: 0.75rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /*
+        .detail-value {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }*/
+
+        .smell-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .action-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .action-btn:hover svg {
+            transform: scale(1.1);
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Severity-based styling */
+        .severity-high {
+            border-left: 4px solid #ef4444;
+        }
+
+        .severity-high .smell-type {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .severity-high .smell-detail {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #ef4444;
+        }
+
+        .severity-medium {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .severity-medium .smell-type {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .severity-medium .smell-detail {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: #f59e0b;
+        }
+
+        .severity-low {
+            border-left: 4px solid #10b981;
+        }
+
+        .severity-low .smell-type {
+            background: linear-gradient(135deg, #10b981, #059669);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .severity-low .smell-detail {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .smells-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .smell-card {
+                padding: 1.5rem;
+            }
+            
+            .smell-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .smell-actions {
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+        }
+
+
+        .tab-content {
+            display: none; /* Hide all tabs by default */
+        }
+
+        .tab-content.active {
+            display: block; /* Only show active tab */
+        }
+
+        /* Make sure results tab content only shows in results tab */
+        #results-tab .smells-container {
+            display: none; /* Hidden by default */
+        }
+
+        #results-tab.active .smells-container {
+            display: grid; /* Only show when results tab is active */
+        }
+
+
+        /* Smells Container with spacing */
+.smells-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem; /* Extra bottom padding */
+}
+
+.smell-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 1rem; /* Extra spacing between cards */
+}
+
+/* Remove the colorful top line and replace with subtle shadow hover */
+.smell-card::before {
+    display: none; /* Remove the colorful line */
+}
+
+.smell-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: #c7d2fe;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .smell-card {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-color: #374151;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .smell-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: #4f46e5;
+}
+
+.smell-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.smell-info {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.smell-type {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.smell-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.smell-detail {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 8px;
+    border-left: 3px solid #3b82f6;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-right: 0.75rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+.detail-value {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+/* Action buttons with light/dark theme support */
+.smell-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+/* Light theme hover effects */
+.explanation-btn:hover {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+    transform: scale(1.05);
+}
+
+.solution-btn:hover {
+    background: #10b981;
+    border-color: #10b981;
+    color: white;
+    transform: scale(1.05);
+}
+
+.action-btn:hover svg {
+    transform: scale(1.1);
+}
+
+.action-btn:active {
+    transform: scale(0.95);
+}
+
+/* Dark theme button styles */
+[data-theme="dark"] .action-btn {
+    background: #374151;
+    border-color: #4b5563;
+    color: #d1d5db;
+}
+
+[data-theme="dark"] .explanation-btn:hover {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+[data-theme="dark"] .solution-btn:hover {
+    background: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+/* Card spacer for extra spacing */
+.card-spacer {
+    height: 1rem;
+    width: 100%;
+}
+
+/* Severity-based styling (updated without the top line) */
+.severity-high {
+    border-left: 4px solid #ef4444;
+}
+
+.severity-high .smell-type {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.severity-high .smell-detail {
+    background: rgba(239, 68, 68, 0.08);
+    border-left-color: #ef4444;
+}
+
+.severity-medium {
+    border-left: 4px solid #f59e0b;
+}
+
+.severity-medium .smell-type {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.severity-medium .smell-detail {
+    background: rgba(245, 158, 11, 0.08);
+    border-left-color: #f59e0b;
+}
+
+.severity-low {
+    border-left: 4px solid #10b981;
+}
+
+.severity-low .smell-type {
+    background: linear-gradient(135deg, #10b981, #059669);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.severity-low .smell-detail {
+    background: rgba(16, 185, 129, 0.08);
+    border-left-color: #10b981;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .smells-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .smell-card {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .smell-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .smell-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Light theme (default) */
+.smell-details {
+    background-color: transparent;
+    color: #333333;
+}
+
+
+
+/* Dark theme */
+body.dark-mode .smell-details,
+.dark-mode .smell-details {
+    background-color: transparent;
+    color: #e0e0e0;
+}
+
+body.dark-mode .detail-label,
+.dark-mode .detail-label {
+    color: #b0b0b0;
+    background-color: inherit; /* Inherit the green background from parent row */
+}
+
+body.dark-mode .detail-value,
+.dark-mode .detail-value {
+    color: #ffffff !important; /* Make values clearly visible in dark mode */
+    background-color: inherit; /* Inherit the green background from parent row */
+}
+
+body.dark-mode .smell-detail,
+.dark-mode .smell-detail {
+    background-color: rgba(0, 128, 0, 0.2) !important; /* Slightly more visible green in dark mode */
+}
+
+
+
+
+
+
+
+
+.threshold-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-subtitle {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.expand-icon {
+    transition: transform 0.3s ease;
+    color: #6b7280;
+}
+
+.expand-icon.expanded {
+    transform: rotate(180deg);
+}
+
+.threshold-content {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.threshold-item {
+    margin-bottom: 1rem;
+}
+
+.threshold-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.threshold-input-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+
+
+
+    </style>
+
+     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src vscode-resource:; style-src 'unsafe-inline'; script-src vscode-resource: 'unsafe-inline';">
+
+</head>
+<body>
+    
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <svg class="sun-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="m12 1 1.5 1.5M21 12l1.5-1.5m-1.5 1.5-1.5 1.5M12 23l-1.5-1.5M3 12l-1.5 1.5m1.5-1.5 1.5-1.5"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Q-Spire</h1>
+            <p class="subtitle">Elevate your quantum code quality with intelligent smell detection</p>
+            <div class="divider"></div>
+        </header>
+
+        <div class="tab-container">
+            <nav class="tab-nav">
+                <button class="tab-button active" onclick="switchTab('detection')">Detection Tool</button>
+                <button class="tab-button" onclick="switchTab('results')">Results & Analysis</button>
+            </nav>
+        </div>
+
+        <div id="detection-tab" class="tab-content active">
+
+            <div class="main-card">
+                <h2 class="section-title">Q-Spire</h2>
+                
+                <div class="detection-method">
+                    <div class="radio-group">
+                        <label class="radio-option" for="dynamic">
+                            <input type="radio" id="dynamic" name="detection-type" value="dynamic" onchange="updateAnalyzeButton()">
+                            <div class="radio-title">
+                                ⚡ Dynamic Detection
+                            </div>
+                            <div class="radio-description">
+                                Analyze quantum code smells during runtime execution with real-time monitoring and dynamic analysis techniques.
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option" for="static">
+                            <input type="radio" id="static" name="detection-type" value="static" onchange="updateAnalyzeButton()">
+                            <div class="radio-title">
+                                🔍 Static Detection
+                            </div>
+                            <div class="radio-description">
+                                Perform comprehensive static analysis of quantum code structure without execution, identifying potential issues early.
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="file-selection">
+                    <label class="file-label">Select File</label>
+                    <div class="file-input-group">
+                        <div class="file-display" id="file-display">
+                            No file selected
+                        </div>
+                        <!--<button class="file-browse-btn" onclick="document.getElementById('file-input').click()">
+                            Browse Files
+                        </button> -->
+                        <input type="file" id="file-input" accept=".py,.qasm,.q" onchange="handleFileSelect(event)">
+                    </div>
+                </div>
+
+                <button class="analyze-btn" id="analyze-btn" onclick="analyzeFile()" disabled>
+                    Analyze File
+                </button>
+
+                <!-- Loading/Status Section -->
+                <div class="analysis-status" id="analysis-status" style="display: none;">
+                    <div class="status-content">
+                        <div class="loading-spinner" id="loading-spinner">
+                            <svg viewBox="0 0 50 50">
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                                    <animate attributeName="stroke-array" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+                                    <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+                                </circle>
+                            </svg>
+                        </div>
+                        <div class="success-checkmark" id="success-checkmark" style="display: none;">
+                            <svg viewBox="0 0 50 50">
+                                <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4"/>
+                                <path fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14 25l7 7 14-14"/>
+                            </svg>
+                        </div>
+                        <div class="status-text" id="status-text">Detecting Smells...</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div style="height: 1.5rem;"> </div>
+
+            <div class="main-card">
+
+                <div class="threshold-header" style="height:4em;" onclick="toggleThresholds()">
+                    <h3 class="section-title" style="padding-top: 15px;">Custom Threshold Smell Values</h3>
+                    <div class="expand-icon" id="expand-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="threshold-content" id="threshold-content" style="display: none;">
+                    <div class="threshold-item">
+                        <label class="threshold-label">IQ : max_distance</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="iq-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-iq-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">IdQ : max_distance</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="idq-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-idq-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">LC : gate_error</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="lc-gate_error"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-lc-gate_error-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+
+                        <div style="height: 1rem;"></div>
+
+                        <label class="threshold-label">LC : threshold</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="lc-threshold"
+                                type="number"
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-lc-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">NC : functions call difference</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="nc-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-nc-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">ROC : min_subcircuit_lenght</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="roc-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-roc-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">CG : min_num_smells</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="cg-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-cg-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">IM : min_num_smells</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="im-threshold"
+                                type="number"
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-im-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="threshold-item">
+                        <label class="threshold-label">LPQ : min_num_smells</label>
+                        <div class="threshold-input-group">
+                            <input 
+                                id="lpq-threshold"
+                                type="number" 
+                                class="summary-item" 
+                                placeholder="Enter value"
+                                style="flex: 1; 
+                                    padding: 0.625rem 0.875rem; 
+                                    border: 1px solid #d1d5db; 
+                                    border-radius: 0.375rem; 
+                                    font-size: 0.875rem;
+                                    transition: all 0.2s;
+                                    outline: none;"
+                                onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                                onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                            />
+                            <button 
+                                id="save-lpq-btn" 
+                                class="action-button" 
+                                style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div id="results-tab" class="tab-content">
+
+            <!-- NEW SECTION: Configuration Settings -->
+            <div class="main-card" style="padding: 1rem; padding-left: 1.5rem; padding-right: 1.5rem;">
+
+                <div class="summary-value" style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <label for="api-key-input" class="summary-item" style="min-width: 100px;">API Key:</label>
+                    <input 
+                        id="api-key-input"
+                        type="password" 
+                        class="summary-item" 
+                        placeholder="Enter your API key"
+                        style="flex: 1; 
+                            padding: 0.625rem 0.875rem; 
+                            border: 1px solid #d1d5db; 
+                            border-radius: 0.375rem; 
+                            font-size: 0.875rem;
+                            transition: all 0.2s;
+                            outline: none;"
+                        onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                        onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                    />
+                    <button 
+                        id="save-api-key-btn" 
+                        class="action-button" 
+                        style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                    >
+                        Save
+                    </button>
+                </div>
+
+                <div class="summary-value" style="display: flex; align-items: center; gap: 1rem;">
+                    <label for="model-input" class="summary-item" style="min-width: 100px;">Model:</label>
+                    <input 
+                        id="model-input"
+                        type="text" 
+                        class="summary-item" 
+                        placeholder="Enter the model name"
+                        style="flex: 1; 
+                            padding: 0.625rem 0.875rem; 
+                            border: 1px solid #d1d5db; 
+                            border-radius: 0.375rem; 
+                            font-size: 0.875rem;
+                            transition: all 0.2s;
+                            outline: none;"
+                        onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.1)'"
+                        onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+                    />
+                    <button 
+                        id="save-model-btn" 
+                        class="action-button" 
+                        style="background-color: #10b981; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 0.375rem; cursor: pointer; white-space: nowrap;"
+                    >
+                        Save
+                    </button>
+                </div>
+
+            </div>
+
+
+
+
+            <div style="height: 2rem;"></div>
+
+            <div class="main-card">
+                
+                
+                
+                <div class="results-header">
+                    <h2 class="section-title">Results & Analysis</h2>
+                    <div class="results-summary" id="results-summary" style="display: none;">
+                        <div class="summary-item">
+                            <span class="summary-label">File Analyzed:</span>
+                            <span class="summary-value" id="analyzed-file-name">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Detection Method:</span>
+                            <span class="summary-value" id="detection-method">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Smells Found:</span>
+                            <span class="summary-value" id="smells-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-content" id="results-content">
+                    <div class="empty-state" id="empty-state">
+                        <p>This section will display your quantum code smell analysis results.</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.875rem;">Run an analysis to see detailed insights here.</p>
+                    </div>
+
+                    <div class="smells-container" id="smells-container" style="display: none;">
+                        <!-- Smells will be dynamically inserted here -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>const vscode = acquireVsCodeApi();</script>
+
+    <!--
+    <script type="module">
+    console.log('=== FILE PATH DEBUGGING ===');
+    
+    // Current file info
+    const currentUrl = new URL(import.meta.url);
+    console.log('Current file URL:', currentUrl.href);
+    console.log('Protocol:', currentUrl.protocol);
+    console.log('Full path (encoded):', currentUrl.pathname);
+    
+    // If it's a file:// protocol, we can try to decode it
+    if (currentUrl.protocol === 'file:') {
+        try {
+            // Decode URI components to see better path
+            const decodedPath = decodeURIComponent(currentUrl.pathname);
+            console.log('Decoded path:', decodedPath);
+            
+            // For Windows paths, they might start with /C:/ instead of C:/
+            if (decodedPath.startsWith('/') && decodedPath.includes(':/')) {
+                console.log('Windows path detected:', decodedPath.substring(1));
+            }
+        } catch (e) {
+            console.log('Could not decode path');
+        }
+    }
+    
+    // Test if we're in the right directory by checking for other files
+    const filesToTest = [
+        './',
+        '../',
+        '../../',
+        'extension.js',
+        'out/',
+        'out/extension.js'
+    ];
+    
+    console.log('Testing relative paths:');
+    
+    filesToTest.forEach(async (relativePath) => {
+        const testUrl = new URL(relativePath, currentUrl.href);
+        try {
+            const response = await fetch(testUrl.href);
+            console.log(`📁 ${relativePath} -> ${response.status} (${response.statusText})`);
+        } catch (error) {
+            console.log(`❌ ${relativePath} -> Cannot access (${error.message})`);
+        }
+    });
+</script>
+-->
+
+<script>
+        
+    // ✅ You can now access the absolute path
+    console.log('Extension absolute path:', window.extensionAbsolutePath);
+    console.log('Extension.js URI:', window.extensionJsUri);
+    
+    // Or request it via message if you prefer
+    vscode.postMessage({
+        command: 'getExtensionPath'
+    });
+    
+    // Listen for the response
+    window.addEventListener('message', event => {
+        const message = event.data;
+        if (message.command === 'extensionPath') {
+            console.log('Extension path received:', message.path);
+            console.log('Extension.js URI:', message.extensionJsUri);
+        }
+    });
+</script>
+
+<script>
+    
+    let waitingForPythonResult = false;
+    let pythonResultResolver = null;
+
+    function callPythonFunction(filePath, smell, method) {
+        return new Promise((resolve, reject) => {
+            waitingForPythonResult = true;
+            pythonResultResolver = resolve;
+            
+            // Send message to extension
+            vscode.postMessage({
+                command: 'callPythonExplain',
+                filePath: filePath,
+                smell: smell,
+                method: method
+            });
+            
+            // Set timeout
+            setTimeout(() => {
+                if (waitingForPythonResult) {
+                    waitingForPythonResult = false;
+                    pythonResultResolver = null;
+                    reject(new Error('Python function call timed out'));
+                }
+            }, 60000);
+        });
+    }
+
+    
+    // Update your message listener:
+    window.addEventListener('message', event => {
+        const message = event.data;
+        switch (message.command) {
+            case 'pythonExplainResult':
+                console.log('Python result:', message.data);
+                if (waitingForPythonResult && pythonResultResolver) {
+                    waitingForPythonResult = false;
+                    pythonResultResolver(message.data);
+                    pythonResultResolver = null;
+                }
+                break;
+            case 'pythonExplainError':
+                console.error('Python error:', message.error);
+                if (waitingForPythonResult && pythonResultResolver) {
+                    waitingForPythonResult = false;
+                    pythonResultResolver = null;
+                    // Handle error appropriately
+                }
+                break;
+        }
+    });
+
+</script>
+
+
+    <script>
+
+        console.log("Script loaded here"); // Add this at the very top
+
+        // Global variable to store current smells for action buttons
+        let currentSmells = [];
+        let filePath="";
+        let current_method="";
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            
+            // Toggle icon visibility
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            
+            if (newTheme === 'dark') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to selected tab button
+            event.target.classList.add('active');
+        }
+
+        // Radio button selection styling
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioOptions = document.querySelectorAll('.radio-option');
+            radioOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    radioOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                });
+            });
+        });
+
+        // File selection handling
+        /*
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const fileDisplay = document.getElementById('file-display');
+            
+            if (file) {
+                fileDisplay.textContent = file.name;
+                fileDisplay.style.color = 'var(--text-primary)';
+            } else {
+                fileDisplay.textContent = 'No file selected';
+                fileDisplay.style.color = 'var(--text-secondary)';
+            }
+            
+            updateAnalyzeButton();
+        }*/
+       function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileDisplay = document.getElementById('file-display');
+                fileDisplay.textContent = file.name;
+                fileDisplay.title = file.path || file.name;
+                currentFilePath = file.path;
+                
+                // Mark as manually selected
+                fileDisplay.style.color = '#2196F3'; // Different color for manual selection
+                fileDisplay.style.fontWeight = 'normal';
+            }
+        }
+
+
+        // Update analyze button state
+        function updateAnalyzeButton() {
+            const selectedMethod = document.querySelector('input[name="detection-type"]:checked');
+            const fileInput = document.getElementById('file-input');
+            const hasManualFile = fileInput.files.length > 0;
+            const hasActiveFile = currentFilePath !== null && currentFilePath !== undefined;
+            const analyzeBtn = document.getElementById('analyze-btn');
+            
+            // console.log('Updating analyze button:', { selectedMethod: !!selectedMethod, hasManualFile, hasActiveFile, currentFilePath });
+            
+            // Enable if method is selected AND (manual file is selected OR active file is available)
+            if (selectedMethod && (hasManualFile || hasActiveFile)) {
+                analyzeBtn.disabled = false;
+            } else {
+                analyzeBtn.disabled = true;
+            }
+        }
+
+        // VSCode API reference (will be available in webview)
+        //let vscode;
+        let currentFilePath = null;
+        let currentFileName = null;
+
+        // Initialize VSCode API
+        try {
+            //vscode = acquireVsCodeApi();
+            console.log('VSCode API acquired successfully');
+        } catch (error) {
+            console.error('Failed to acquire VSCode API:', error);
+        }
+
+        // Analyze file function - sends message to VSCode extension
+        function analyzeFile() {
+            const selectedMethod = document.querySelector('input[name="detection-type"]:checked');
+            const fileInput = document.getElementById('file-input');
+            const hasSelectedFile = fileInput.files.length > 0;
+            
+            if (selectedMethod && vscode) {
+                console.log('Sending analyze command to VSCode');
+                // Send message to VSCode extension
+                vscode.postMessage({
+                    command: 'analyze',
+                    method: selectedMethod.value,
+                    useActiveFile: !hasSelectedFile, // Use active file if no file was manually selected
+                    fileName: currentFilePath
+                });
+            } else {
+                console.error('Cannot analyze: method not selected or VSCode API not available');
+            }
+        }
+
+        // Request active file info from VSCode
+        function requestActiveFileInfo() {
+            if (vscode) {
+                // console.log('Requesting active file info from VSCode');
+                vscode.postMessage({
+                    command: 'getActiveFile'
+                });
+            } else {
+                console.error('VSCode API not available');
+            }
+        }
+
+        // Handle messages from VSCode extension
+        window.addEventListener('message', event => {
+            const message = event.data;
+            //console.log('Received message from VSCode:', message);
+            
+            switch (message.command) {
+
+                case 'setActiveFile':
+                    // console.log('setActiveFile received:', message.filePath, message.fileName); // ADD THIS
+                    const fileDisplay = document.getElementById('file-display');
+                    
+                    if (message.filePath) {
+                        // console.log('Updating file display with:', message.fileName); // ADD THIS
+                        fileDisplay.textContent = message.fileName;
+                        fileDisplay.title = message.filePath;
+                        currentFilePath = message.filePath;
+                        
+                        // Visual indicator
+                        fileDisplay.style.color = '#4CAF50';
+                        fileDisplay.style.fontWeight = 'bold';
+                    } else {
+                        console.log('No filePath in message'); // ADD THIS
+                    }
+                    break;
+
+                case 'activeFileInfo':
+                    updateActiveFileDisplay(message.fileName, message.filePath, message.multipleFiles);
+                    break;
+                case 'analysisStarted':
+                    showAnalysisStarted(message.fileName, message.method);
+                    break;
+                case 'analysisComplete':
+                    console.log('Raw message received:', message);
+                    console.log('Message results:', message.results);
+                    console.log('Message fileName:', message.fileName);
+                    console.log('Message method:', message.method);
+                    
+                    showAnalysisResults({
+                        results: message.results,
+                        fileName: message.fileName,
+                        method: message.method
+                    });
+                    break;
+                case 'analysisError':
+                    showAnalysisError(message.error);
+                    break;
+                default:
+                    console.log('Unknown message command:', message.command);
+            }
+        });
+
+        // Update the file display with active file info
+        function updateActiveFileDisplay(fileName, filePath, multipleFiles) {
+            const fileDisplay = document.getElementById('file-display');
+            const fileInput = document.getElementById('file-input');
+            
+            // console.log('Updating file display:', { fileName, filePath, multipleFiles });
+            
+            // Only update if user hasn't manually selected a file
+            if (fileInput.files.length === 0) {
+                if (multipleFiles) {
+                    fileDisplay.textContent = 'Multiple files open - please select one';
+                    fileDisplay.style.color = 'var(--text-secondary)';
+                    currentFilePath = null;
+                    currentFileName = null;
+                } else if (fileName && filePath) {
+                    fileDisplay.textContent = fileName;
+                    fileDisplay.style.color = 'var(--text-primary)';
+                    currentFilePath = filePath;
+                    currentFileName = fileName;
+                } else {
+                    fileDisplay.textContent = 'No file selected';
+                    fileDisplay.style.color = 'var(--text-secondary)';
+                    currentFilePath = null;
+                    currentFileName = null;
+                }
+                updateAnalyzeButton();
+            }
+        }
+
+        // Show analysis started feedback
+        function showAnalysisStarted(fileName, method) {
+            const statusSection = document.getElementById('analysis-status');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const successCheckmark = document.getElementById('success-checkmark');
+            const statusText = document.getElementById('status-text');
+            
+            // Show status section
+            statusSection.style.display = 'block';
+            
+            // Show loading state
+            loadingSpinner.style.display = 'block';
+            successCheckmark.style.display = 'none';
+            statusText.textContent = 'Detecting Smells...';
+            
+            // Disable analyze button
+            const analyzeBtn = document.getElementById('analyze-btn');
+            analyzeBtn.disabled = true;
+        }
+
+        
+
+        function showAnalysisResults(data) {
+            console.log('showAnalysisResults called with:', data);
+            
+            const statusSection = document.getElementById('analysis-status');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const successCheckmark = document.getElementById('success-checkmark');
+            const statusText = document.getElementById('status-text');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            
+            // Update status to success
+            loadingSpinner.style.display = 'none';
+            successCheckmark.style.display = 'block';
+            statusText.textContent = 'Smells Detected. Go to Results and Analysis section';
+            
+            // Re-enable analyze button after a delay
+            setTimeout(() => {
+                analyzeBtn.disabled = false;
+                updateAnalyzeButton();
+            }, 1000);
+            
+            // Prepare data for updateResultsDisplay
+            const resultsData = {
+                fileName: data.fileName,
+                method: data.method,
+                smells: data.results
+            };
+
+            
+            console.log('Calling updateResultsDisplay with:', resultsData);
+            
+            // Update results display with proper structure
+            updateResultsDisplay(resultsData);
+            
+            // Hide status section after 3 seconds
+            /*
+            setTimeout(() => {
+                statusSection.style.display = 'none';
+            }, 3000);
+            */
+        }
+        
+        // Hide status section after 3 secondsà
+        /*
+        setTimeout(() => {
+            statusSection.style.display = 'none';
+        }, 3000);
+        */
+    
+
+        // Show analysis error
+        function showAnalysisError(error) {
+            const statusSection = document.getElementById('analysis-status');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const statusText = document.getElementById('status-text');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            
+            // Update status to error
+            loadingSpinner.style.display = 'none';
+            statusText.textContent = `Analysis failed: ${error}`;
+            statusText.style.color = '#ef4444';
+            
+            // Re-enable analyze button
+            analyzeBtn.disabled = false;
+            updateAnalyzeButton();
+            
+            // Hide status section after 5 seconds
+            setTimeout(() => {
+                statusSection.style.display = 'none';
+                statusText.style.color = 'var(--text-primary)';
+            }, 5000);
+        }
+
+
+
+        function updateResultsDisplay(results) {
+            try {
+
+                
+                currentSmells = results.smells.smells.smells || [];
+                currentFileName=results.fileName || "";
+
+                console.log("Current Smells:", currentSmells);
+                currentSmells.forEach((smell, i) => {
+                    console.log(`Smell ${i}:`, smell);
+                });
+
+                current_method=results.method
+
+                filePath=results.smells.filePath;
+                
+
+                console.log('Updating results display with:', results);
+                
+                // Be VERY specific about targeting only the results tab
+                const resultsTab = document.getElementById('results-tab');
+                const emptyState = document.querySelector('#results-tab #empty-state');
+                const resultsSummary = document.querySelector('#results-tab #results-summary');
+                const smellsContainer = document.querySelector('#results-tab #smells-container');
+                
+                console.log('DOM elements found:', {
+                    resultsTab: !!resultsTab,
+                    emptyState: !!emptyState,
+                    resultsSummary: !!resultsSummary,
+                    smellsContainer: !!smellsContainer
+                });
+                
+                // Make sure we're only working with the results tab
+                if (!resultsTab || !smellsContainer) {
+                    console.error('Results tab or smells container not found!');
+                    return;
+                }
+                
+                // Hide empty state and show results ONLY in results tab
+                if (emptyState) {
+                    emptyState.style.display = 'none';
+                }
+                
+                if (resultsSummary) {
+                    resultsSummary.style.display = 'grid';
+                }
+                
+                // Force the smells container to be visible ONLY when we're updating it
+                smellsContainer.style.display = 'grid';
+                
+                // Clear previous results
+                smellsContainer.innerHTML = '';
+                console.log('Cleared previous results');
+                
+                if (resultsSummary) {
+                    resultsSummary.style.display = 'grid';
+                    console.log('Made results summary visible');
+                }
+                
+                if (smellsContainer) {
+                    smellsContainer.style.display = 'block'; // Changed from 'grid' to 'block'
+                    console.log('Made smells container visible');
+                }
+                
+                // Update summary information
+                const fileNameEl = document.getElementById('analyzed-file-name');
+                const methodEl = document.getElementById('detection-method');
+                const countEl = document.getElementById('smells-count');
+                
+                if (fileNameEl) {
+                    fileNameEl.textContent = results.fileName || 'Unknown';
+                    console.log('Updated file name to:', results.fileName);
+                }
+                
+                if (methodEl) {
+                    methodEl.textContent = results.method || 'Unknown';
+                    console.log('Updated method to:', results.method);
+                }
+                
+                if (countEl) {
+                    console.log(results.smells.smells.smells)
+                    countEl.textContent = results.smells.smells.smells ? results.smells.smells.smells.length : 0;
+                    console.log('Updated smell count to:', results.smells.smells.smells ? results.smells.smells.smells.length : 0);
+                }
+                
+                // Clear previous results
+                if (smellsContainer) {
+                    smellsContainer.innerHTML = '';
+                    console.log('Cleared previous results');
+                    
+                    // Add smells
+                    if (results.smells.smells.smells && results.smells.smells.smells.length > 0) {
+
+                        console.log('Adding', results.smells.smells.smells.length, 'smell cards');
+                        results.smells.smells.smells.forEach((smell, index) => {
+                            console.log('Creating smell card for:', smell);
+                            const smellCard = createSmellCard(smell, index);
+                            smellsContainer.appendChild(smellCard);
+                            console.log('Added smell card', index);
+                        });
+                    } else {
+                        console.log('No smells found, showing success message');
+                        // No smells found
+                        smellsContainer.innerHTML = `
+                            <div class="smell-card" style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
+                                <div style="color: var(--text-secondary);">
+                                    <svg style="width: 3rem; height: 3rem; margin-bottom: 1rem; opacity: 0.5;" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <h3>No Code Smells Found!</h3>
+                                    <p>Your quantum code looks clean and follows best practices.</p>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+                
+                console.log('updateResultsDisplay completed successfully');
+                
+            } catch (error) {
+                console.error('ERROR in updateResultsDisplay:', error);
+            }
+        }
+
+        
+
+        // Configure which information to display for each smell type
+        function getSmellDisplayConfig(smell) {
+            const config = [];
+            
+            console.log("Smell row: ",smell.row)
+            console.log(typeof(smell.row))
+            // Always show position if available
+            if (smell.row != null) {
+                config.push({
+                    label: 'Row',
+                    value: smell.row
+                });
+            }
+            
+            if (smell.column_start != null && smell.column_end != null) {
+                config.push({
+                    label: 'Columns',
+                    value: `${smell.column_start}-${smell.column_end}`
+                });
+            }
+            
+            // Show circuit name if available
+            if (smell.circuit_name && smell.circuit_name!="null") {
+                config.push({
+                    label: 'Circuit',
+                    value: smell.circuit_name
+                });
+            }
+            
+            // Add type-specific information based on smell type
+            switch (smell.type) {
+                /*
+                case 'LC':
+                    if (smell.gate_count) {
+                        config.push({
+                            label: 'Gate Count',
+                            value: smell.gate_count
+                        });
+                    }
+                    break;
+                    
+                case 'Unused Quantum Register':
+                    if (smell.register_name) {
+                        config.push({
+                            label: 'Register',
+                            value: smell.register_name
+                        });
+                    }
+                    break;
+                    
+                case 'Deep Quantum Circuit':
+                    if (smell.depth) {
+                        config.push({
+                            label: 'Depth',
+                            value: smell.depth
+                        });
+                    }
+                    break;
+                */
+                    
+                
+            default:
+                // For unknown types, show any additional properties (excluding falsy values)
+                Object.keys(smell).forEach(key => {
+                    if (!['type', 'row', 'column_start', 'column_end', 'explanation', 'suggestion', 'circuit_name'].includes(key) && 
+                        smell[key] !== null && 
+                        smell[key] !== undefined &&
+                        smell[key] !== '') {
+                        config.push({
+                            label: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                            value: smell[key]
+                        });
+                    }
+                });
+            }
+            
+            return config;
+        }
+
+        // Get severity class based on smell type or properties
+        function getSeverityClass(smell) {
+            const highSeverityTypes = ['Critical Error', 'Security Issue', 'Performance Critical'];
+            const mediumSeverityTypes = ['Long Quantum Circuit', 'Deep Quantum Circuit'];
+            
+            if (highSeverityTypes.includes(smell.type)) {
+                return 'severity-high';
+            } else if (mediumSeverityTypes.includes(smell.type)) {
+                return 'severity-medium';
+            } else {
+                return 'severity-low';
+            }
+        }
+        
+        // Create a smell card element
+        function createSmellCard(smell, index) {
+            const card = document.createElement('div');
+            card.className = `smell-card ${getSeverityClass(smell)}`;
+            
+            // Configure what information to display based on smell type
+            const displayConfig = getSmellDisplayConfig(smell);
+            
+            card.innerHTML = `
+                <div class="smell-header">
+                    <div class="smell-info">
+                        <div class="smell-type">${smell.type || 'Unknown Smell'}</div>
+                        <div class="smell-details">
+                            ${displayConfig.map(config => 
+                                config.value ? `
+                                    <div class="smell-detail">
+                                        <span class="detail-label">${config.label}</span>
+                                        <span class="detail-value">${config.value}</span>
+                                    </div>
+                                ` : ''
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="smell-actions">
+                        <button class="action-btn explanation-btn" onclick="showExplanation(${index})" title="Show Explanation">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-spacer"></div>
+            `;
+            
+            return card;
+        }
+
+       
+        // Get severity class based on smell type or properties
+        function getSeverityClass(smell) {
+            // You can customize this logic based on your smell types
+            const highSeverityTypes = ['Critical Error', 'Security Issue', 'Performance Critical'];
+            const mediumSeverityTypes = ['Long Quantum Circuit', 'Deep Quantum Circuit'];
+            
+            if (highSeverityTypes.includes(smell.type)) {
+                return 'severity-high';
+            } else if (mediumSeverityTypes.includes(smell.type)) {
+                return 'severity-medium';
+            } else {
+                return 'severity-low';
+            }
+        }
+
+        
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        // Add this new tab content to your HTML (after the results-tab div)
+
+
+// Add this new tab content to your HTML (after the results-tab div)
+const explanationTabHTML = `
+<div id="explanation-tab" class="tab-content">
+    <div class="explanation-header">
+        <div class="back-arrow" onclick="goBackToResults()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5"/>
+                <path d="m12 19-7-7 7-7"/>
+            </svg>
+        </div>
+        <h2 class="explanation-title">Explanation and Suggestions</h2>
+    </div>
+    <div class="main-card">
+        <div class="explanation-content" id="explanation-content">
+            <div class="loading-explanation" id="loading-explanation">
+                <div class="loading-spinner">
+                    <svg viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                            <animate attributeName="stroke-array" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+                <div class="status-text">Generating explanation...</div>
+            </div>
+            <div class="explanation-text" id="explanation-text" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+`;
+
+const explanationCSS = `
+#explanation-tab {
+    display: none;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#explanation-tab.active {
+    display: block;
+}
+
+.explanation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.back-arrow {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.back-arrow:hover {
+    background-color: #f0f0f0;
+}
+
+.back-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke: #333;
+}
+
+.explanation-title {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+[data-theme="dark"] .explanation-title {
+    color: #f9fafb;
+}
+
+
+
+
+.explanation-content {
+    padding: 30px;
+    min-height: 400px;
+}
+
+.loading-explanation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+
+
+.status-text {
+    font-size: 16px;
+    color: #666;
+}
+
+.explanation-text {
+    line-height: 1.6;
+    color: #333;
+    font-size: 16px;
+    white-space: pre-wrap;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: #007bff;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+    
+    
+    .explanation-content pre {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 15px 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .explanation-content pre code {
+        background: none;
+        padding: 0;
+        color: #e2e8f0;
+        white-space: pre;
+    }
+    
+    .explanation-content code {
+        background: #f8f9fa;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        color: #e83e8c;
+        font-size: 0.9em;
+        word-wrap: break-word;
+    }
+    
+    .explanation-content p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+
+/* Dark theme for explanation content */
+[data-theme="dark"] .explanation-content {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-color: #374151;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #f3f4f6;
+}
+
+[data-theme="dark"] .explanation-content h2,
+[data-theme="dark"] .explanation-content h3 {
+    color: #f9fafb;
+    border-bottom-color: #60a5fa;
+}
+
+[data-theme="dark"] .explanation-content h1 {
+    color: #f9fafb;
+}
+
+[data-theme="dark"] .explanation-content p {
+    color: #e5e7eb;
+}
+
+[data-theme="dark"] .explanation-content strong {
+    color: #f3f4f6;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .explanation-content code {
+    background: #374151;
+    color: #fbbf24;
+    border: 1px solid #4b5563;
+}
+
+[data-theme="dark"] .explanation-content pre {
+    background: #0f172a;
+    border: 1px solid #334155;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .explanation-content pre code {
+    background: none;
+    color: #94a3b8;
+    border: none;
+}
+
+[data-theme="dark"] .explanation-content blockquote {
+    background: #374151;
+    border-left: 4px solid #60a5fa;
+    color: #d1d5db;
+}
+
+[data-theme="dark"] .explanation-content ul li,
+[data-theme="dark"] .explanation-content ol li {
+    color: #e5e7eb;
+}
+
+[data-theme="dark"] .explanation-content a {
+    color: #60a5fa;
+}
+
+[data-theme="dark"] .explanation-content a:hover {
+    color: #93c5fd;
+}
+
+/* Dark theme typing cursor */
+[data-theme="dark"] .typing-cursor {
+    background-color: #60a5fa;
+}
+
+/* Dark theme scrollbar styling (optional) */
+[data-theme="dark"] .explanation-content::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+[data-theme="dark"] .explanation-content::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .explanation-content::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] .explanation-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+[data-theme="dark"] .explanation-content pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+[data-theme="dark"] .explanation-content pre::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+[data-theme="dark"] .explanation-content pre::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+
+`;
+
+// Function to initialize the explanation tab (call this once when page loads)
+function initializeExplanationTab() {
+    // Add the CSS first
+    const style = document.createElement('style');
+    style.textContent = explanationCSS;
+    document.head.appendChild(style);
+    
+    // Add the explanation tab HTML to the container
+    const container = document.querySelector('.container');
+    const explanationDiv = document.createElement('div');
+    explanationDiv.innerHTML = explanationTabHTML;
+    container.appendChild(explanationDiv.firstElementChild);
+}
+
+
+// Updated showExplanation function
+async function showExplanation(smellIndex) {
+    const smell = currentSmells[smellIndex];
+    
+    console.log('showExplanation called with index:', smellIndex);
+    console.log('smell:', smell);
+    console.log('filePath:', filePath);
+    console.log('current_method:', current_method);
+    
+    // Make sure the explanation tab exists
+    let explanationTab = document.getElementById('explanation-tab');
+    if (!explanationTab) {
+        console.log('Explanation tab not found, creating it...');
+        initializeExplanationTab();
+        explanationTab = document.getElementById('explanation-tab');
+    }
+    
+    if (!explanationTab) {
+        console.error('Failed to create explanation tab');
+        alert('Error: Could not create explanation tab');
+        return;
+    }
+    
+    // Switch to explanation tab
+    console.log('Switching to explanation tab...');
+    switchToExplanationTab();
+    
+    // Reset the explanation content
+    const loadingDiv = document.getElementById('loading-explanation');
+    const textDiv = document.getElementById('explanation-text');
+    
+    if (!loadingDiv || !textDiv) {
+        console.error('Loading or text div not found');
+        alert('Error: Explanation elements not found');
+        return;
+    }
+    
+    loadingDiv.style.display = 'flex';
+    textDiv.style.display = 'none';
+    textDiv.textContent = '';
+    
+    try {
+        console.log('Starting explanation generation...');
+        
+        /*
+        let explanation="No explanation";
+
+        try {
+            explanation =  await callPythonFunction(
+                filePath, smell, current_method
+            );
+            console.log('Explanation:', explanation);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+        // Hide loading and show the explanation
+        loadingDiv.style.display = 'none';
+        textDiv.style.display = 'block';
+        
+        // Create typing effect
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        textDiv.appendChild(cursor);
+        
+        // Simulate typing effect for the explanation
+        const explanationText = explanation;
+        let currentIndex = 0;
+        
+        const typeText = () => {
+            if (currentIndex < explanationText.length) {
+                const textNode = document.createTextNode(explanationText[currentIndex]);
+                textDiv.insertBefore(textNode, cursor);
+                textDiv.scrollTop = textDiv.scrollHeight;
+                currentIndex++;
+                setTimeout(typeText, 10); // Adjust typing speed here
+            } else {
+                cursor.remove(); // Remove cursor when done
+            }
+        };
+        
+        typeText();
+        */
+
+        let explanation="No explanation";
+
+        try {
+            explanation =  await callPythonFunction(
+                filePath, smell, current_method
+            );
+            console.log('Explanation:', explanation);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        // Hide loading and show the explanation
+        loadingDiv.style.display = 'none';
+        textDiv.style.display = 'block';
+
+        // Replace your existing typing code with this:
+        const explanationText = explanation;
+        const htmlContent = marked.parse(explanationText); // Convert markdown to HTML
+
+        // Set the final HTML content immediately
+        textDiv.innerHTML = htmlContent;
+
+        // If you want to keep the typing effect, you could do word-by-word:
+        const words = explanationText.split(' ');
+        let currentWordIndex = 0;
+        textDiv.innerHTML = '<span class="typing-cursor"></span>';
+
+        const typeWords = () => {
+            if (currentWordIndex < words.length) {
+                const currentText = words.slice(0, currentWordIndex + 1).join(' ');
+                const currentHtml = marked.parse(currentText);
+                textDiv.innerHTML = currentHtml + '<span class="typing-cursor"></span>';
+                textDiv.scrollTop = textDiv.scrollHeight;
+                currentWordIndex++;
+                setTimeout(typeWords, 100); // Adjust speed
+            } else {
+                textDiv.innerHTML = htmlContent; // Final content without cursor
+            }
+        };
+
+        typeWords();
+        
+    } catch (error) {
+        console.error('Error getting explanation:', error);
+        loadingDiv.style.display = 'none';
+        textDiv.style.display = 'block';
+        textDiv.textContent = `Error getting explanation: ${error.message}`;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+// Updated go back function
+function goBackToResults() {
+    console.log('=== GO BACK CALLED ===');
+    
+    // Hide explanation tab
+    const explanationTab = document.getElementById('explanation-tab');
+    if (explanationTab) {
+        explanationTab.classList.remove('active');
+    }
+    
+    // Show results tab
+    const resultsTab = document.getElementById('results-tab');
+    if (resultsTab) {
+        resultsTab.classList.add('active');
+    }
+    
+    // Update tab buttons
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Make results tab button active
+    const resultsButton = document.querySelector('[onclick="switchTab(\'results\')"]');
+    if (resultsButton) {
+        resultsButton.classList.add('active');
+    }
+}
+
+// Function to switch to explanation tab
+function switchToExplanationTab() {
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show explanation tab
+    const explanationTab = document.getElementById('explanation-tab');
+    explanationTab.classList.add('active');
+    
+    // Update tab buttons (remove active from all)
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+}
+
+// Function to go back to results tab
+function goBackToResults() {
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show results tab
+    const resultsTab = document.getElementById('results-tab');
+    resultsTab.classList.add('active');
+    
+    // Update tab buttons
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Make results tab button active
+    const resultsButton = document.querySelector('[onclick="switchTab(\'results\')"]');
+    if (resultsButton) {
+        resultsButton.classList.add('active');
+    }
+}
+
+// Call this when your page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeExplanationTab();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function showSolution(smellIndex) {
+            const smell = currentSmells[smellIndex];
+            if (smell && smell.suggestion) {
+                alert(`Solution for ${smell.type}:\n\n${smell.suggestion}`);
+            } else {
+                alert(`Solution for ${smell.type}:\n\nConsider reviewing and refactoring this part of your code according to quantum computing best practices.`);
+            }
+            // TODO: Replace with your actual solution implementation
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            
+            // Try to get VSCode API if not already acquired
+            if (!vscode) {
+                try {
+                    //vscode = acquireVsCodeApi();
+                    console.log('VSCode API acquired on DOM ready');
+                } catch (error) {
+                    console.error('Failed to acquire VSCode API on DOM ready:', error);
+                }
+            }
+            
+            // Request active file info from VSCode immediately
+            setTimeout(() => {
+                requestActiveFileInfo();
+            }, 500); // Small delay to ensure extension is ready
+            
+            // Set up periodic updates for active file (when focus changes)
+            setInterval(() => {
+                requestActiveFileInfo();
+            }, 3000); // Check every 3 seconds
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+    <script>
+
+        function loadModel() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'LLM_model'
+            });
+        }
+
+        // Load API key when page loads
+        function loadApiKey() {
+            // Request the API key from extension.js
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'API_KEY'
+            });
+        }
+
+        // Save API key
+        function saveApiKey() {
+            const apiKeyInput = document.getElementById('api-key-input');
+            const apiKeyValue = apiKeyInput.value;
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'API_KEY',
+                value: apiKeyValue
+            });
+        }
+
+        // Save Model
+        function saveModel() {
+            const modelInput = document.getElementById('model-input');
+            const modelValue = modelInput.value;
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'LLM_model',
+                value: modelValue
+            });
+        }
+
+
+
+        function saveCG() {
+            const modelInput = document.getElementById('cg-threshold');
+             const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'CG',
+                value: modelValue
+            });
+        }
+
+        function saveLPQ() {
+            const modelInput = document.getElementById('lpq-threshold');
+            const modelValue =  parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'LPQ',
+                value: modelValue
+            });
+        }
+
+        function saveIM() {
+            const modelInput = document.getElementById('im-threshold');
+            const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'IM',
+                value: modelValue
+            });
+        }
+
+        function saveROC() {
+            const modelInput = document.getElementById('roc-threshold');
+            const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'ROC',
+                value: modelValue
+            });
+        }
+
+        function saveNC() {
+            const modelInput = document.getElementById('nc-threshold');
+            const modelValue =  parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'NC',
+                value: modelValue
+            });
+        }
+
+        function saveIQ() {
+            const modelInput = document.getElementById('iq-threshold');
+            const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'IQ',
+                value: modelValue
+            });
+        }
+
+        function saveIdQ() {
+            const modelInput = document.getElementById('idq-threshold');
+            const modelValue =  parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'IdQ',
+                value: modelValue
+            });
+        }
+
+
+
+
+
+        function saveLCgate_error() {
+            const modelInput = document.getElementById('lc-gate_error');
+            const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'LC-GateError',
+                value: modelValue
+            });
+        }
+
+        function saveLCthreshold() {
+            const modelInput = document.getElementById('lc-threshold');
+            const modelValue = parseFloat(modelInput.value);
+            
+            // Send save request to extension.js
+            vscode.postMessage({
+                command: 'saveConfig',
+                field: 'LC-Threshold',
+                value: modelValue
+            });
+        }
+
+
+
+
+
+        // Load CG Threshold
+        function loadCG() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'CG'
+            });
+        }
+
+        function loadIQ() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'IQ'
+            });
+        }
+
+        function loadIdQ() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'IdQ'
+            });
+        }
+
+        function loadROC() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'ROC'
+            });
+        }
+
+        function loadIM() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'IM'
+            });
+        }
+
+        function loadLPQ() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'LPQ'
+            });
+        }
+
+        function loadNC() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'NC'
+            });
+        }
+
+
+
+        //Aggiunere differenze
+
+        function loadLCGateError() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'LC-GateError'
+            });
+        }
+
+        function loadLCThreshold() {
+            vscode.postMessage({
+                command: 'loadConfig',
+                field: 'LC-Threshold'
+            });
+        }
+
+
+
+
+
+        // Listen for messages from extension.js
+        window.addEventListener('message', event => {
+            const message = event.data;
+            
+            switch(message.command) {
+                case 'configLoaded':
+                    // Update the input field with loaded value
+                    if (message.field === 'API_KEY' && message.value) {
+                        document.getElementById('api-key-input').value = message.value;
+                    }
+                    if (message.field === 'LLM_model' && message.value) {
+                        document.getElementById('model-input').value = message.value;
+                    }
+
+                    if (message.field === 'CG' && message.value) {
+                        document.getElementById('cg-threshold').value = message.value;
+                    }
+                    if (message.field === 'LPQ' && message.value) {
+                        document.getElementById('lpq-threshold').value = message.value;
+                    }
+                    if (message.field === 'IQ' && message.value) {
+                        document.getElementById('iq-threshold').value = message.value;
+                    }
+                    if (message.field === 'IdQ' && message.value) {
+                        document.getElementById('idq-threshold').value = message.value;
+                    }
+                    if (message.field === 'ROC' && message.value) {
+                        document.getElementById('roc-threshold').value = message.value;
+                    }
+                    if (message.field === 'NC' && message.value) {
+                        document.getElementById('nc-threshold').value = message.value;
+                    }
+                    if (message.field === 'IM' && message.value) {
+                        document.getElementById('im-threshold').value = message.value;
+                    }
+
+
+                    if (message.field === 'LC-Threshold' && message.value) {
+                        document.getElementById('lc-threshold').value = message.value;
+                    }
+                    if (message.field === 'LC-GateError' && message.value) {
+                        document.getElementById('lc-gate_error').value = message.value;
+                    }
+
+                    break;
+                    
+                case 'configSaved':
+                    // Show success feedback for API Key
+                    if (message.field === 'API_KEY' && message.success) {
+                        const saveBtn = document.getElementById('save-api-key-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+                    // Show success feedback for Model
+                    if (message.field === 'LLM_model' && message.success) {
+                        const saveBtn = document.getElementById('save-model-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+
+
+
+                    if (message.field === 'CG' && message.success) {
+                        const saveBtn = document.getElementById('save-cg-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'LPQ' && message.success) {
+                        const saveBtn = document.getElementById('save-lpq-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'IM' && message.success) {
+                        const saveBtn = document.getElementById('save-im-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'IdQ' && message.success) {
+                        const saveBtn = document.getElementById('save-idq-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'IQ' && message.success) {
+                        const saveBtn = document.getElementById('save-iq-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'ROC' && message.success) {
+                        const saveBtn = document.getElementById('save-roc-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'NC' && message.success) {
+                        const saveBtn = document.getElementById('save-nc-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+
+                    
+
+                    // Aggiingere differenza 
+
+                    if (message.field === 'LC-Threshold' && message.success) {
+                        const saveBtn = document.getElementById('save-lc-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    if (message.field === 'LC-GateError' && message.success) {
+                        const saveBtn = document.getElementById('save-lc-gate_error-btn');
+                        saveBtn.textContent = 'Saved!';
+                        saveBtn.style.backgroundColor = '#059669';
+                        setTimeout(() => {
+                            saveBtn.textContent = 'Save';
+                            saveBtn.style.backgroundColor = '#10b981';
+                        }, 2000);
+                    }
+
+                    
+
+                    
+
+                    break;
+            }
+        });
+
+
+
+
+
+
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadApiKey();
+            loadModel();
+            loadCG();
+            loadIM();
+            loadIQ();
+            loadIdQ();
+            loadLPQ();
+            loadNC();
+            loadROC();
+            loadLCGateError();
+            loadLCThreshold();
+            
+            // Add event listener to API Key save button
+            const apiKeySaveBtn = document.getElementById('save-api-key-btn');
+            if (apiKeySaveBtn) {
+                apiKeySaveBtn.addEventListener('click', saveApiKey);
+            }
+            
+            // Add event listener to Model save button
+            const modelSaveBtn = document.getElementById('save-model-btn');
+            if (modelSaveBtn) {
+                modelSaveBtn.addEventListener('click', saveModel);
+            }
+
+
+            const CGSaveBtn = document.getElementById('save-cg-btn');
+            if (CGSaveBtn) {
+                CGSaveBtn.addEventListener('click', saveCG);
+            }
+
+            const LPQSaveBtn = document.getElementById('save-lpq-btn');
+            if (LPQSaveBtn) {
+                LPQSaveBtn.addEventListener('click', saveLPQ);
+            }
+
+            const IMSaveBtn = document.getElementById('save-im-btn');
+            if (IMSaveBtn) {
+                IMSaveBtn.addEventListener('click', saveIM);
+            }
+
+            const IQSaveBtn = document.getElementById('save-iq-btn');
+            if (IQSaveBtn) {
+                IQSaveBtn.addEventListener('click', saveIQ);
+            }
+
+            const IdQSaveBtn = document.getElementById('save-idq-btn');
+            if (IdQSaveBtn) {
+                IdQSaveBtn.addEventListener('click', saveIdQ);
+            }
+
+            const ROCSaveBtn = document.getElementById('save-roc-btn');
+            if (ROCSaveBtn) {
+                ROCSaveBtn.addEventListener('click', saveROC);
+            }
+
+            const NCSaveBtn = document.getElementById('save-nc-btn');
+            if (NCSaveBtn) {
+                NCSaveBtn.addEventListener('click', saveNC);
+            }
+
+
+            const LCSaveGateErrorBtn = document.getElementById('save-lc-gate_error-btn');
+            if (LCSaveGateErrorBtn) {
+                LCSaveGateErrorBtn.addEventListener('click', saveLCgate_error);
+            }
+
+            const LCSaveThresholdBtn = document.getElementById('save-lc-btn');
+            if (LCSaveThresholdBtn) {
+                LCSaveThresholdBtn.addEventListener('click', saveLCthreshold);
+            }
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function toggleThresholds() {
+            const content = document.getElementById('threshold-content');
+            const icon = document.getElementById('expand-icon');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.classList.add('expanded');
+            } else {
+                content.style.display = 'none';
+                icon.classList.remove('expanded');
+            }
+        }
+
+
+
+    </script>
+
+    
+
+
+
+</body>
+
+
+
+</html>
