@@ -9,7 +9,7 @@ import scipy.stats as stats
 plt.style.use('default')
 sns.set_palette("husl")
 
-df = pd.read_excel('dataset_quantum_code_smells_sliced.xlsx')
+df = pd.read_excel('..\\results\\dataset_quantum_code_smells_sliced.xlsx')
 smell_columns = ['CG', 'ROC', 'NC', 'LC', 'IM', 'IdQ', 'IQ', 'LPQ']
 
 prevalence_results = []

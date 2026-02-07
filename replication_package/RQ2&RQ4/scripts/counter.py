@@ -1,210 +1,223 @@
 import os
-import argparse
 import csv
 from collections import defaultdict
 import openpyxl
-from openpyxl import Workbook
+import argparse
 
 
-COLUMN_ORDER = ['CG', 'ROC', 'NC', 'LC', 'IM', 'IdQ', 'IQ', 'LPQ']
+# Ordine delle colonne nel dataset
+COLUMNS = ['CG', 'ROC', 'NC', 'LC', 'IM', 'IQ', 'IdQ', 'LPQ']
 
-def debug_folder_content(folder_path):
-    print("\nDEBUG - Contenuto della cartella:")
-    print("="*50)
-    for item in os.listdir(folder_path):
-        full_path = os.path.join(folder_path, item)
-        file_type = "file" if os.path.isfile(full_path) else "cartella"
-        print(f"- {item} ({file_type})")
-    print("="*50)
 
-def count_types_in_csv(filepath):
-    type_counts = defaultdict(int)
-    try:
-        with open(filepath, mode='r', encoding='utf-8') as csvfile:
-            reader = csv.DictReader(csvfile)
-            if 'type' not in reader.fieldnames:
-                print(f" Colonna 'type' non trovata nel file CSV")
-                return {}, False
+def count_types_in_file(filepath):
+    """Conta i code smell in un singolo file CSV o Excel"""
+    counts = defaultdict(int)
+    
+    if filepath.lower().endswith('.csv'):
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                if 'type' not in reader.fieldnames:
+                    return counts
+                for row in reader:
+                    t = row['type'].strip().upper()
+                    if t == "IDQ":
+                        t = "IdQ"
+                    if t in COLUMNS:
+                        counts[t] += 1
+        except:
+            return counts
+            
+    elif filepath.lower().endswith(('.xlsx', '.xls', '.xlsm', '.xlsb')):
+        try:
+            wb = openpyxl.load_workbook(filepath, read_only=True)
+            for sheet in wb:
+                header = next(sheet.iter_rows(values_only=True))
+                header_lower = [str(h).lower() if h else '' for h in header]
                 
-            count = 0
-            for row in reader:
-                type_value = row['type'].strip().upper()
-                if type_value == "IDQ":
-                    type_value = "IdQ"
-                if type_value in COLUMN_ORDER or type_value == "IdQ":
-                    type_counts[type_value] += 1
-                    count += 1
-            
-            print(f"  Trovate {count} occorrenze valide nel file CSV")
-            return dict(type_counts), True
-            
-    except Exception as e:
-        print(f" Errore durante l'analisi del CSV {filepath}: {str(e)}")
-    return {}, False
-
-def count_types_in_excel(filepath):
-    type_counts = defaultdict(int)
-    try:
-        wb = openpyxl.load_workbook(filepath, read_only=True)
-        print(f"\nAnalisi di: {os.path.basename(filepath)}")
-        
-        for sheet in wb:
-            try:
-                header_row = next(sheet.iter_rows(min_row=1, max_row=1, values_only=True))
-                if "type" not in header_row:
-                    print(f" 'type' non trovato nelle intestazioni: {header_row}")
+                if "type" not in header_lower:
                     continue
-                    
-                type_col_idx = header_row.index("type") + 1
-                count = 0
+                
+                col_idx = header_lower.index("type")
+                
                 for row in sheet.iter_rows(min_row=2, values_only=True):
-                    if row and len(row) >= type_col_idx:
-                        type_value = str(row[type_col_idx-1]).strip().upper()
-                        if type_value == "IDQ":
-                            type_value = "IdQ"
-                        if type_value in COLUMN_ORDER or type_value == "IdQ":
-                            type_counts[type_value] += 1
-                            count += 1
-                print(f"  Trovate {count} occorrenze valide nel foglio '{sheet.title}'")
-                
-            except Exception as sheet_error:
-                print(f" Errore nel foglio {sheet.title}: {sheet_error}")
-                
-        return dict(type_counts), True
-        
-    except Exception as e:
-        print(f" Errore durante l'apertura del file Excel: {str(e)}")
-    return {}, False
+                    if col_idx < len(row) and row[col_idx]:
+                        t = str(row[col_idx]).strip().upper()
+                        if t == "IDQ":
+                            t = "IdQ"
+                        if t in COLUMNS:
+                            counts[t] += 1
+        except:
+            return counts
+    
+    return counts
 
-def process_files(folder_path):
-    supported_extensions = ('.xlsx', '.xls', '.xlsm', '.xlsb', '.csv')
-    files = [f for f in os.listdir(folder_path) 
-            if f.lower().endswith(supported_extensions)]
+
+def process_repository(repo_path, repo_name):
+    """Processa una repository: trova tutte le slice"""
+    results = []
     
-    if not files:
-        print("\n Nessun file supportato trovato (accettati: .xlsx, .xls, .csv)")
-        return None
+    # Trova tutte le cartelle slice in questa repository
+    slice_folders = []
+    for item in os.listdir(repo_path):
+        item_path = os.path.join(repo_path, item)
+        if os.path.isdir(item_path):
+            slice_folders.append(item)
     
-    results = {}
-    for filename in files:
-        filepath = os.path.join(folder_path, filename)
-        if filename.lower().endswith('.csv'):
-            counts, success = count_types_in_csv(filepath)
+    # Ordina le cartelle per nome (così gli slice ID saranno in ordine)
+    slice_folders.sort()
+    
+    # Processa ogni slice in ordine
+    for i, slice_folder in enumerate(slice_folders, 1):
+        slice_path = os.path.join(repo_path, slice_folder)
+        slice_counts = defaultdict(int)
+        
+        # Conta tutti i file nella slice
+        for file in os.listdir(slice_path):
+            if file.lower().endswith(('.csv', '.xlsx', '.xls', '.xlsm', '.xlsb')):
+                file_counts = count_types_in_file(os.path.join(slice_path, file))
+                for k, v in file_counts.items():
+                    slice_counts[k] += v
+        
+        # Crea riga per questa slice
+        row = {
+            'Repo': repo_name,
+            'Slice ID': i,  # Numero progressivo (1, 2, 3...)
+            'Anno': slice_folder,  # Nome della cartella = periodo temporale
+        }
+        
+        # Aggiungi conteggi
+        for col in COLUMNS:
+            row[col] = slice_counts.get(col, 0)
+        
+        results.append(row)
+    
+    return results
+
+
+def update_dataset(results_path, dataset_path):
+    """Aggiorna il dataset Excel con i risultati"""
+    all_data = []
+    
+    print(f"Analisi cartella: {results_path}")
+    
+    # Raccogli tutti i dati
+    for item in sorted(os.listdir(results_path)):
+        item_path = os.path.join(results_path, item)
+        
+        if os.path.isdir(item_path):
+            repo_name = item
+            print(f"\nRepository: {repo_name}")
+            
+            repo_data = process_repository(item_path, repo_name)
+            
+            if repo_data:
+                print(f"  Trovate {len(repo_data)} slice")
+                for data in repo_data:
+                    print(f"    Slice {data['Slice ID']} ({data['Anno']}): {data}")
+                all_data.extend(repo_data)
+            else:
+                print(f"  Nessuna slice trovata")
+    
+    if not all_data:
+        print("\nNessun dato trovato!")
+        return False
+    
+    print(f"\nTotale slice trovate: {len(all_data)}")
+    
+    # Carica o crea Excel
+    if os.path.exists(dataset_path):
+        wb = openpyxl.load_workbook(dataset_path)
+        if "dataset" in wb.sheetnames:
+            ws = wb["dataset"]
         else:
-            counts, success = count_types_in_excel(filepath)
-            
-        if success and counts:
-            ordered_counts = {t: counts.get(t, 0) for t in COLUMN_ORDER}
-            results[filename] = ordered_counts
-    
-    return results if results else None
-
-def write_to_excel(results, output_file, folder_path):
-    """Scrive i risultati in un file Excel nella cartella specificata"""
-    try:
-        # Costruisce il percorso completo del file di output nella cartella di input
-        output_path = os.path.join(folder_path, output_file)
-        
-        wb = Workbook()
+            ws = wb.active
+            ws.title = "dataset"
+    else:
+        wb = openpyxl.Workbook()
         ws = wb.active
-        ws.title = "Risultati"
+        ws.title = "dataset"
+    
+    # Intestazione
+    headers = ['Repo', 'Slice ID', 'Anno', 'CG', 'ROC', 'NC', 'LC', 'IM', 'IQ', 'IdQ', 'LPQ']
+    
+    # Cancella dati esistenti (tranne intestazione)
+    if ws.max_row > 1:
+        existing_headers = []
+        for i in range(1, len(headers) + 1):
+            existing_headers.append(ws.cell(row=1, column=i).value)
         
-        
-        headers = ["Script"] + COLUMN_ORDER
+        if existing_headers == headers:
+            for row in range(ws.max_row, 1, -1):
+                ws.delete_rows(row)
+        else:
+            ws.delete_rows(1, ws.max_row)
+            ws.append(headers)
+    else:
         ws.append(headers)
-        
-      
-        for filename, counts in results.items():
-            
-            script_name = os.path.basename(filename)
-            if script_name.lower().endswith('.csv'):
-                script_name = script_name[:-4]  
-           
-            script_name = script_name.replace('_', '\\')
-            row = [script_name]
-            for col in COLUMN_ORDER:
-                row.append(counts[col])
-            ws.append(row)
-        
-       
-        for cell in ws[1]:
-            cell.font = openpyxl.styles.Font(bold=True)
-        
-      
-        for column in ws.columns:
-            max_length = 0
-            column_letter = column[0].column_letter
-            for cell in column:
-                try:
-                    if len(str(cell.value)) > max_length:
-                        max_length = len(str(cell.value))
-                except:
-                    pass
-            adjusted_width = min(max_length + 2, 50)
-            ws.column_dimensions[column_letter].width = adjusted_width
-        
-        wb.save(output_path)
-        print(f"\n File Excel salvato come: {output_path}")
-        
-    except Exception as e:
-        print(f" Errore durante il salvataggio del file Excel: {str(e)}")
+    
+    # Stile intestazione
+    for cell in ws[1]:
+        cell.font = openpyxl.styles.Font(bold=True)
+    
+    # Scrivi tutti i dati
+    for data in all_data:
+        row = [
+            data['Repo'],
+            data['Slice ID'],
+            data['Anno'],
+            data['CG'],
+            data['ROC'],
+            data['NC'],
+            data['LC'],
+            data['IM'],
+            data['IQ'],
+            data['IdQ'],
+            data['LPQ']
+        ]
+        ws.append(row)
+    
+    # Aggiusta larghezza colonne
+    for col in ws.columns:
+        max_len = 0
+        for cell in col:
+            if cell.value is not None:
+                max_len = max(max_len, len(str(cell.value)))
+        ws.column_dimensions[col[0].column_letter].width = min(max_len + 2, 50)
+    
+    # Salva
+    wb.save(dataset_path)
+    print(f"\nDataset salvato: {dataset_path}")
+    print(f"Righe scritte: {len(all_data)}")
+    
+    return True
+
 
 def main():
-    parser = argparse.ArgumentParser(description='Conta le occorrenze dei tipi nei file Excel/CSV')
-    parser.add_argument('folder', help='Percorso della cartella contenente i file')
-    parser.add_argument('--output', '-o', default='results.xlsx', 
-                       help='Nome del file Excel di output (default: results.xlsx)')
-    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', '-d', required=True, help='Percorso file dataset Excel')
     args = parser.parse_args()
-    folder_path = args.folder
-    output_file = args.output
     
-    if not os.path.isdir(folder_path):
-        print(f" Errore: '{folder_path}' non è una cartella valida")
+    # Cartella results
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    results_path = os.path.join(script_dir, '..', 'results')
+    results_path = os.path.normpath(results_path)
+    
+    if not os.path.exists(results_path):
+        print(f"ERRORE: Cartella 'results' non trovata in {results_path}")
         return
     
-    print(f"\nAvvio analisi nella cartella: {os.path.abspath(folder_path)}")
-    debug_folder_content(folder_path)
+    print(f"Cartella results: {results_path}")
+    print(f"File dataset: {args.dataset}")
+    print("-" * 50)
     
-    try:
-        results = process_files(folder_path)
-        if results:
-            # Calcola i totali per ogni tipo
-            totali = defaultdict(int)
-            for filename, counts in results.items():
-                for tipo, valore in counts.items():
-                    totali[tipo] += valore
-            
-            print("\n" + "="*80)
-            print("RISULTATI DETTAGLIATI".center(80))
-            print("="*80)
-            print("{:<30}".format("File"), end="")
-            for col in COLUMN_ORDER:
-                print("{:>8}".format(col), end="")
-            print("\n" + "-"*80)
-            
-            
-            for filename, counts in results.items():
-                print("{:<30}".format(filename[:30]), end="")
-                for col in COLUMN_ORDER:
-                    print("{:>8}".format(counts[col]), end="")
-                print()
-            
-            
-            print("-"*80)
-            print("{:<30}".format("TOTALE"), end="")
-            for col in COLUMN_ORDER:
-                print("{:>8}".format(totali[col]), end="")
-            print()
-            print("="*80)
-            
-            
-            write_to_excel(results, output_file, folder_path)
+    success = update_dataset(results_path, args.dataset)
+    
+    if success:
+        print("\nOperazione completata con successo!")
+    else:
+        print("\nOperazione fallita.")
 
-        else:
-            print("\n Nessun dato valido trovato nei file")
-    except Exception as e:
-        print(f"\n Errore durante l'analisi: {str(e)}")
 
 if __name__ == "__main__":
     main()
