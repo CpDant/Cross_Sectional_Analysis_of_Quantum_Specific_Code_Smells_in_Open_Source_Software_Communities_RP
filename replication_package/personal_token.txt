@@ -1,3 +1,0 @@
-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
-
-python -m makeSlice repo --token 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
