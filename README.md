@@ -31,11 +31,11 @@ qspire -static "path_folder_project" "path_folder_results"
 ```
 4. Run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
-python -m counter.py --dataset ..\results\dataset_quantum_code_smells.xlsx
+python -m counter --dataset ..\results\dataset_quantum_code_smells.xlsx
 ```
 5. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
-python -m correlationDetection.py
+python -m correlationDetection
 ```
 Finally, PDF files will be available that graphically illustrate the results for RQ1 and RQ3.
 
@@ -54,11 +54,11 @@ qspire -static "path_folder_project_sliced" "path_folder_results_sliced"
 ```
 4. Run the _counter.py_ script, located in the scripts folder, as follows:
 ```{r}
-python -m counter.py --dataset ..\results\dataset_quantum_code_smells_sliced.xlsx
+python -m counter --dataset ..\results\dataset_quantum_code_smells_sliced.xlsx
 ```
 5. Run the script _correlationDetection.py_ as follows (pay attention to the path passed in the script!!!):
 ```{r}
-python -m correlationSlicedDetection.py
+python -m correlationSlicedDetection
 ```
 Finally, PDF files will be available that graphically illustrate the results for RQ2 and RQ4.
 
