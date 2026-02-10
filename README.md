@@ -46,7 +46,7 @@ The steps to be performed are listed below:
 1. Clone the projects in the file _dataset_quantum-enabled_projects_RQ2&RQ4.xlsx_
 2. Use the makeSlice.py script (create a GitHub token to avoid problems!!!) to divide the projects into different time slices, as follows:
 ```{r}
-python -m makeSlice.py "repo_url" --token "personal_github_token"
+python -m makeSlice "repo_url" --token "personal_github_token"
 ```
 3. Run qspire on each time slice using the following command:
 ```{r}
